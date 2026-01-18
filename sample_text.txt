@@ -1,0 +1,7 @@
+Welcome to Week 6! This week, we’ll dive into data handling and analysis, emphasizing the use of Python and NumPy for practical data tasks. Building on your foundational skills, we’ll explore reading from and writing to files, transforming raw data into structured formats, and applying key data analysis techniques to gain insights.
+
+We’ll start by working with different file types, especially CSV files, which are widely used for data storage. You’ll learn how to read data directly into Python, clean it, and make the necessary transformations. Using NumPy, we’ll then perform essential statistical operations that are common in data analysis workflows, such as calculating means, medians, and standard deviations.
+
+You’ll also get hands-on experience creating data pipelines that combine file handling and NumPy operations, which will allow you to efficiently manage and analyze larger datasets. This process is crucial in real-world analytics, where data preparation and transformation are key steps.
+
+By the end of this week, you’ll have solid skills in data management, ready to tackle more complex datasets. Let’s make the most of these practical techniques to set a strong foundation for advanced analytics.

@@ -1,0 +1,6 @@
+[
+    {"name": "John Doe", "age": 29, "department": "Sales"},
+    {"name": "Jane Smith", "age": 34, "department": "Engineering"},
+    {"name": "Emily Jones", "age": 27, "department": "Sales"},
+    {"name": "Michael Brown", "age": 42, "department": "Engineering"}
+]

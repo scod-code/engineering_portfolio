@@ -1,0 +1,62 @@
+[
+    {
+        "name": "John Doe",
+        "department": "Engineering",
+        "position": "Software Engineer",
+        "salary": 85000
+    },
+    {
+        "name": "Jane Smith",
+        "department": "Marketing",
+        "position": "Marketing Specialist",
+        "salary": 65000
+    },
+    {
+        "name": "Emily Johnson",
+        "department": "Sales",
+        "position": "Sales Manager",
+        "salary": 75000
+    },
+    {
+        "name": "Michael Brown",
+        "department": "Engineering",
+        "position": "Data Scientist",
+        "salary": 95000
+    },
+    {
+        "name": "Sarah Williams",
+        "department": "Human Resources",
+        "position": "HR Specialist",
+        "salary": 60000
+    },
+    {
+        "name": "David Miller",
+        "department": "Finance",
+        "position": "Financial Analyst",
+        "salary": 72000
+    },
+    {
+        "name": "Laura Wilson",
+        "department": "Engineering",
+        "position": "Product Manager",
+        "salary": 90000
+    },
+    {
+        "name": "Chris Anderson",
+        "department": "Sales",
+        "position": "Sales Representative",
+        "salary": 50000
+    },
+    {
+        "name": "Jessica Thomas",
+        "department": "Engineering",
+        "position": "Machine Learning Engineer",
+        "salary": 102000
+    },
+    {
+        "name": "Robert Jackson",
+        "department": "Marketing",
+        "position": "Content Strategist",
+        "salary": 67000
+    }
+]
