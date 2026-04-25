@@ -1,19 +1,20 @@
 # Data Science — SOFT40161
 
-Core data science coursework covering Python programming through applied data analysis.
+Coursework from the SOFT40161 module covering Python programming concepts
+through applied data science, from language fundamentals to object-oriented design.
 
 ## Contents
-- `labs/` — Verified and in-progress lab notebooks
-- `labs/review-needed/` — Labs pending topic verification
-- `datasets/` — Course datasets
-- `comprehensive-analysis.ipynb` — End-of-course analysis notebook
 
-## Verified Labs
-| Notebook | Topic |
-|----------|-------|
-| `jupyter-basics.ipynb` | Intro to Jupyter, markdown, basic Python |
-| `control-structures.ipynb` | Sequence, branching, loops, nested conditions |
-| `advanced-inheritance.ipynb` | Advanced OOP inheritance patterns |
+| Item | Description |
+|------|-------------|
+| `labs/jupyter-basics.ipynb` | Introduction to Jupyter, markdown, and basic Python scripting |
+| `labs/control-structures.ipynb` | Sequence, branching, loops, and nested conditional logic |
+| `labs/advanced-inheritance.ipynb` | Advanced OOP — inheritance patterns and method overriding |
+| `labs/lab_03.ipynb` through `lab_09.ipynb` | Additional labs pending topic labelling |
+| `comprehensive-analysis.ipynb` | End-of-course analysis notebook spanning multiple topics |
+| `datasets/` | Course datasets (populated as labs are linked) |
 
 ## Skills Covered
-Python, Pandas, NumPy, Matplotlib, OOP, data cleaning, EDA
+
+Python, Pandas, NumPy, Matplotlib, OOP, data cleaning, exploratory data analysis,
+control flow, Jupyter workflows

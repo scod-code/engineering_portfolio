@@ -1,13 +1,25 @@
 # Advanced C++
 
-Three substantial assignments demonstrating advanced C++ concepts.
+Three substantial assignments demonstrating advanced C++ programming concepts
+including custom data structure design, algorithm implementation, and
+performance-focused optimisation.
 
 ## Contents
-| Folder | Topic |
-|--------|-------|
-| `data-structures/` | Custom data structure design and implementation |
-| `algorithms/` | Algorithm design and complexity analysis |
-| `optimization/` | Performance optimisation techniques |
 
-## Skills Covered
-Abstract data types, memory management (RAII), Big-O analysis, STL, testing
+| Folder | Focus | Key Files |
+|--------|-------|-----------|
+| `data-structures/` | Custom data structure design and implementation | `main.cpp`, `hw2b-sco46.h`, `location0`–`location9` |
+| `algorithms/` | Algorithm design, implementation and execution | `main.cpp`, `hw4b-sco46.h`, `hw4b_program` |
+| `optimization/` | Performance-focused implementation with executable output | `main.cpp`, `hw5b-sco46.h`, `hw5b_exec` |
+
+## Notes
+
+- `location0` through `location9` in `data-structures/` are test data files
+  used to validate the data structure implementation against location-based inputs
+- Each assignment folder contains a header file defining the interface,
+  a `main.cpp` implementing the logic, and an executable output
+
+## Skills Demonstrated
+
+Abstract data types, interface design via header files, algorithm complexity,
+memory management, test-driven validation, compiled executable output

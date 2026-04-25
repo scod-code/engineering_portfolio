@@ -3,20 +3,35 @@
 Progressive Python coursework covering core language concepts through applied data analysis.
 
 ## Contents
-- `basics/` — Core Python concepts (verified topics listed below)
-- `homework/` — Weekly assignments
-- `course-project/` — Heart failure prediction capstone project
-- `data/` — Datasets used across notebooks
 
-## Basics — Verified Topics
-| Notebook | Topic |
-|----------|-------|
+| Folder | Description |
+|--------|-------------|
+| `basics/` | Weekly concept notebooks — verified and in-progress |
+| `homework/` | Assignments 1 through 5, including airline passenger analysis |
+| `course-project/` | Heart failure prediction capstone project |
+| `data/` | Datasets used across notebooks |
+| `syllabus.pdf` | Course outline and learning objectives |
+
+## Basics — Notebook Index
+
+| File | Topic |
+|------|-------|
 | `lists-and-slicing.ipynb` | Lists, tuples, slicing, indexing |
-| `conditionals-and-functions.ipynb` | If/elif/else, function definition |
-| `loops-and-iteration.ipynb` | For/while, enumerate, zip |
-| `pandas-data-analysis.ipynb` | Pandas DataFrames, EDA, Titanic dataset |
+| `conditionals-and-functions.ipynb` | If/elif/else, function definition and scope |
+| `loops-and-iteration.ipynb` | For/while loops, enumerate, zip |
+| `pandas-data-analysis.ipynb` | Pandas DataFrames, EDA using Titanic dataset |
+| `week_04.ipynb` | Pending topic verification |
+| `week_06.ipynb` through `week_11.ipynb` | Pending topic verification |
 
-Notebooks in `basics/review-needed/` are awaiting manual topic verification.
+## Datasets
+
+- Titanic passenger survival data
+- Iris flower classification data
+- Chipotle order data
+- Wine quality measurements
+- Heart failure clinical records
+- Advertising spend data
 
 ## Skills Covered
+
 Python syntax, data structures, control flow, functions, Pandas, basic EDA
