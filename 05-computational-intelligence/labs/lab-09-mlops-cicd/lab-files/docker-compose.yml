@@ -1,0 +1,73 @@
+services:
+  gitea:
+    image: docker.gitea.com/gitea:latest
+    container_name: gitea
+    restart: always
+    ports:
+      - "3000:3000"
+      - "2222:22"
+    volumes:
+      - gitea_repo:/data/gitea
+      - gitea_data:/var/lib/gitea
+      - gitea_config:/etc/gitea
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+  jenkins:
+    build:
+      context: ./jenkins
+      dockerfile: Dockerfile
+    container_name: jenkins-comp40771
+    hostname: jenkins-comp40771
+    restart: always
+    ports:
+      - "8080:8080"
+      - "50001:50000"
+    volumes:
+      - jenkins_comp40771:/var/jenkins_home
+
+  mqtt-broker:
+    image: pedrombmachado/mqtt:base
+    container_name: mqtt-broker
+    restart: always
+    command: ["mosquitto", "-c", "/mosquitto-no-auth.conf"]
+    ports:
+      - "1883:1883"
+
+  ollama:
+    build:
+      context: ./ollama
+    container_name: ollama
+    restart: always
+    ports:
+      - "11434:11434"
+    environment:
+      - OLLAMA_MODELS=deepcoder:1.5b qwen2.5-coder:1.5b
+    volumes:
+      - ollama_data:/root/.ollama
+
+  comp40771:
+    image: pedrombmachado/nest:comp40771
+    container_name: comp40771_container
+    restart: always
+    environment:
+      - NEST_CONTAINER_MODE=jupyterlab
+      - OLLAMA_BASE=http://ollama:11434
+    ports:
+      - "8081:8080"
+    volumes:
+      - docker_comp40771:/opt/data
+    security_opt:
+      - seccomp=unconfined
+    cap_add:
+      - SYS_PTRACE
+    depends_on:
+      - ollama
+
+volumes:
+  gitea_data:
+  gitea_config:
+  gitea_repo:
+  jenkins_comp40771:
+  docker_comp40771:
+  ollama_data:

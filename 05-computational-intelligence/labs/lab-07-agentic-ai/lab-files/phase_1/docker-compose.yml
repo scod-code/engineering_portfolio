@@ -1,0 +1,28 @@
+services:
+  nest:
+    image: pedrombmachado/nest:comp40771
+    container_name: comp40771_container
+    environment:
+      - NEST_CONTAINER_MODE=jupyterlab
+      - OLLAMA_BASE=http://ollama:11434
+    ports:
+      - "8081:8080"
+      - "8000:8000"
+    volumes:
+      - docker_comp40771:/opt/data
+    security_opt:
+      - seccomp=unconfined
+    cap_add:
+      - SYS_PTRACE
+    depends_on:
+      - ollama
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+volumes:
+  docker_comp40771:
+  ollama_data:

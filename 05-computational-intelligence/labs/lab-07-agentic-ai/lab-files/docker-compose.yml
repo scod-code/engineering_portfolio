@@ -1,0 +1,56 @@
+services:
+  nest:
+    image: pedrombmachado/nest:comp40771
+    container_name: comp40771_container
+    ports:
+      - "8081:8080"
+    volumes:
+      - docker_comp40771:/opt/data
+    environment:
+      - NEST_CONTAINER_MODE=jupyterlab
+      - OLLAMA_BASE=http://ollama:11434
+      - API_BASE=http://api:8000
+    security_opt:
+      - seccomp=unconfined
+    cap_add:
+      - SYS_PTRACE
+    depends_on:
+      - ollama
+      - api
+
+  ollama:
+    build: ./ollama
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    environment:
+      - OLLAMA_MODELS=llama3.2:1b phi3:mini
+
+  api:
+    build: ./api
+    container_name: api
+    ports:
+      - "8000:8000"
+    environment:
+      - LOG_LEVEL=INFO
+    depends_on:
+      - ollama
+
+  monitor:
+    build: ./monitor
+    container_name: monitor
+    environment:
+      - API_BASE=http://api:8000
+      - OLLAMA_BASE=http://ollama:11434
+      - MODEL_LIGHT=llama3.2:1b
+      - MODEL_HEAVY=phi3:mini
+      - ESCALATION_WEBHOOK=
+    depends_on:
+      - api
+      - ollama
+
+volumes:
+  docker_comp40771:
+  ollama:
