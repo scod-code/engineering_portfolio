@@ -24,15 +24,18 @@ data-driven systems.
 | [`02-advanced/`](./02-advanced/) | Advanced C++ — data structures, algorithms, optimisation |
 | [`03-data-science/`](./03-data-science/) | Data science labs and comprehensive analysis notebooks |
 | [`04-projects/`](./04-projects/) | Applied data analytics, NLP, and visualisation projects |
+| [`05-computational-intelligence/`](./05-computational-intelligence/) | Nature-inspired optimisation, RL, MLOps, AI safety engineering — COMP40771 |
 
 ---
 
 ## Skills
 
-**Languages:** Python, C++  
-**Data:** Pandas, NumPy, Matplotlib, Seaborn  
-**Concepts:** Data structures, algorithms, OOP, image processing, exploratory data analysis  
-**Tools:** Jupyter Notebook, Git, VS Code  
+**Languages:** Python, C++, Groovy  
+**ML/AI:** Reinforcement Learning, Genetic Algorithms, PSO, Bayesian Optimisation, Federated Learning, EEG signal processing, scikit-learn  
+**MLOps:** Jenkins CI/CD, Docker Compose, MQTT, pytest, Ollama (local LLM)  
+**Security:** Zero-trust architecture, AST static analysis, runtime telemetry, sandboxed execution  
+**Data:** Pandas, NumPy, Matplotlib, Seaborn, MongoDB  
+**Tools:** Jupyter Notebook, Git, VS Codes
 
 ---
 
