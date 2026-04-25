@@ -1,0 +1,57 @@
+pipeline {
+    agent any
+
+    environment {
+        MQTT_BROKER = "mqtt-broker"
+        MQTT_PORT   = "1883"
+        MQTT_TOPIC  = "jenkins/pipeline/results"
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install --quiet --no-cache-dir -r requirements.txt'
+            }
+        }
+
+        stage('Test All Files') {
+            steps {
+                sh 'mkdir -p results'
+                sh '''
+                    python -m pytest tests/test_art11_sim.py \
+                        --junit-xml=results/test_all.xml \
+                        -v || true
+                '''
+            }
+        }
+
+        stage('Generate Report') {
+            steps {
+                sh 'python scripts/generate_report.py'
+            }
+        }
+
+        stage('Publish to MQTT') {
+            steps {
+                sh 'python scripts/publish_mqtt.py'
+            }
+        }
+    }
+
+    post {
+        always {
+            junit allowEmptyResults: true, testResults: 'results/*.xml'
+            archiveArtifacts artifacts: 'results/**', allowEmptyArchive: true
+        }
+        success   { echo 'Pipeline completed successfully.' }
+        unstable  { echo 'Pipeline completed — LLM variant failures noted.' }
+        failure   { echo 'Pipeline failed.' }
+    }
+}

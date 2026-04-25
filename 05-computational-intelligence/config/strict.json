@@ -1,0 +1,28 @@
+{
+  "sandbox": {
+    "memory_limit": "128m",
+    "cpu_quota": 0.25,
+    "timeout_seconds": 15,
+    "max_procs": 16
+  },
+  "scoring_weights": {
+    "risky_imports":    3.0,
+    "eval_exec":        5.0,
+    "subprocess_calls": 4.0,
+    "network_calls":    5.0,
+    "fs_writes":        3.0,
+    "obfuscation":      3.5,
+    "canary_access":   15.0,
+    "network_attempts": 6.0,
+    "peak_cpu":         0.1,
+    "peak_mem_mb":      0.02
+  },
+  "policies": {
+    "network": "deny",
+    "writable_dirs": ["./outputs"],
+    "run_as_user": "1000:1000",
+    "read_only_root": true
+  },
+  "ga":  {"population": 30, "generations": 50, "mutation_rate": 0.3},
+  "pso": {"n_particles": 20, "iterations": 60, "w": 0.5, "c1": 2.0, "c2": 2.0}
+}
