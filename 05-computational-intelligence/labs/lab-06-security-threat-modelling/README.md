@@ -18,5 +18,4 @@ dependency auditing, runtime telemetry, containerisation
 ## Files
 - `lab06-security-threat-modelling.ipynb` — Lab notebook
 - `lab-guide.pdf` — Lab instructions
-- `lecture-notes.pdf` — Containerisation and Distributed Technologies slides
 - `lab-files/` — Supporting lab files

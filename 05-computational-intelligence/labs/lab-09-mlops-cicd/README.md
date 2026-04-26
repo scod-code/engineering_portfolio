@@ -25,11 +25,5 @@ JUnit XML, Groovy DSL, REST API, Git workflow
 
 ## Files
 - `lab09-mlops-cicd.ipynb` — Lab notebook
-- `lab-guide.pdf` — Lab instructions
-- `lecture-notes.pdf` — MLOps lecture slides
 - `setup-instructions.pdf` — Environment setup guide
-- `jenkins-build-log.pdf` — Jenkins Build 7 output
-- `advanced-task-screenshots.pdf` — Advanced task visual documentation
-- `correction-notes.pdf` — Debugging and correction flow
-- `completion-guide.pdf` — Lab and coursework completion reference
 - `lab-files/` — Supporting lab files including advanced task

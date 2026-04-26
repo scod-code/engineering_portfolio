@@ -19,5 +19,3 @@ policy visualisation
 ## Files
 - `lab05-reinforcement-learning.ipynb` — Lab notebook
 - `lab-guide.pdf` — Lab instructions
-- `lecture-notes.pdf` — RL lecture slides
-- `augmented-explanations.pdf` — Supplementary concept explanations

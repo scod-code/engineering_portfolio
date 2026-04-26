@@ -13,6 +13,4 @@ stochastic simulation, multi-objective optimisation, agent-based modelling
 - `lab03-evolutionary-algorithms.ipynb` — Main lab notebook
 - `advanced-task.ipynb` — Advanced extension task
 - `lab-guide.pdf` — Lab instructions
-- `complete-guide.pdf` — Full ecosystem optimisation guide
-- `lecture-notes.pdf` — GA and Evolution Strategies lecture slides
 - `lab-files/` — Supporting lab files

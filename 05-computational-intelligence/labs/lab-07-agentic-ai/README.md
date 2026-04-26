@@ -16,7 +16,4 @@ agentic workflow design, adaptive escalation, Docker
 ## Files
 - `lab07-agentic-ai.ipynb` — Lab notebook
 - `lab-guide.pdf` — Lab instructions
-- `complete-guide.pdf` — Full REST API and agentic monitoring guide
-- `simplified-instructions.pdf` — Simplified walkthrough
-- `lecture-notes.pdf` — Agentic AI lecture slides
 - `lab-files/` — Supporting lab files

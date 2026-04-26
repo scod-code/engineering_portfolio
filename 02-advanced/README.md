@@ -8,13 +8,13 @@ performance-focused optimisation.
 
 | Folder | Focus | Key Files |
 |--------|-------|-----------|
-| `data-structures/` | Custom data structure design and implementation | `main.cpp`, `hw2b-sco46.h`, `location0`–`location9` |
+| `data-structures/` | Custom data structure design and implementation | `main.cpp`, `hw2b-sco46.h`, `location0`–`location4` (test data files) |
 | `algorithms/` | Algorithm design, implementation and execution | `main.cpp`, `hw4b-sco46.h`, `hw4b_program` |
 | `optimization/` | Performance-focused implementation with executable output | `main.cpp`, `hw5b-sco46.h`, `hw5b_exec` |
 
 ## Notes
 
-- `location0` through `location9` in `data-structures/` are test data files
+- `location0` through `location4` in `data-structures/` are test data files
   used to validate the data structure implementation against location-based inputs
 - Each assignment folder contains a header file defining the interface,
   a `main.cpp` implementing the logic, and an executable output

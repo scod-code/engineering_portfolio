@@ -35,7 +35,7 @@ data-driven systems.
 **MLOps:** Jenkins CI/CD, Docker Compose, MQTT, pytest, Ollama (local LLM)  
 **Security:** Zero-trust architecture, AST static analysis, runtime telemetry, sandboxed execution  
 **Data:** Pandas, NumPy, Matplotlib, Seaborn, MongoDB  
-**Tools:** Jupyter Notebook, Git, VS Codes
+**Tools:** Jupyter Notebook, Git, VS Code
 
 ---
 

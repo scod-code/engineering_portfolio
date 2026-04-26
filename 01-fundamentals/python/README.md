@@ -6,8 +6,8 @@ Progressive Python coursework covering core language concepts through applied da
 
 | Folder | Description |
 |--------|-------------|
-| `basics/` | Weekly concept notebooks — verified and in-progress |
-| `homework/` | Assignments 1 through 5, including airline passenger analysis |
+| `basics/` | Weekly concept notebooks covering core Python topics |
+| `homework/` | Assignments 1–5 including data analysis projects |
 | `course-project/` | Heart failure prediction capstone project |
 | `data/` | Datasets used across notebooks |
 | `syllabus.pdf` | Course outline and learning objectives |
@@ -20,8 +20,18 @@ Progressive Python coursework covering core language concepts through applied da
 | `conditionals-and-functions.ipynb` | If/elif/else, function definition and scope |
 | `loops-and-iteration.ipynb` | For/while loops, enumerate, zip |
 | `pandas-data-analysis.ipynb` | Pandas DataFrames, EDA using Titanic dataset |
-| `week_04.ipynb` | Pending topic verification |
-| `week_06.ipynb` through `week_11.ipynb` | Pending topic verification |
+| `week_04.ipynb` | NumPy arrays and operations |
+| `week_06.ipynb` through `week_11.ipynb` | Advanced topics: file I/O, modules, OOP, exception handling, decorators |
+
+## Homework — Assignments
+
+| File | Topic |
+|------|-------|
+| `Assignment1.ipynb` | Foundational Python concepts |
+| `Assigment2.ipynb` | Data structures and algorithms |
+| `Assignment 3/` | Extended data analysis project |
+| `Assignment4.ipynb` | Pandas and exploratory data analysis |
+| `Assignment5.ipynb` | Advanced Python applications |
 
 ## Datasets
 

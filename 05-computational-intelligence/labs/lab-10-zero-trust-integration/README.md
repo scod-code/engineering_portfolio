@@ -28,8 +28,5 @@ psutil, pymongo, risk scoring, explainable AI, systems integration
 - `lab-guide.pdf` — Lab guide PDF
 - `instructions.pdf` — Full lab instructions
 - `mongodb-guide.pdf` — MongoDB integration reference
-- `coursework-relevance.pdf` — How Lab 10 connects to coursework
 - `notebook-summary.pdf` — Notebook walkthrough summary
-- `error-corrections-p1/p2/p3` — Debugging and correction documentation
-- `git-push-guide.pdf` — Git push workflow reference
-- `lab-files/` — Supporting lab files
+- `lab-files/` — Supporting lab files including Docker Compose stack

@@ -4,7 +4,7 @@
 
 This module covered nature-inspired optimisation, reinforcement learning, signal
 processing, multi-agent systems, MLOps, and AI safety engineering. Work spanned
-nine labs and an independently assessed capstone project.
+ten labs and an independently assessed capstone project.
 
 ---
 

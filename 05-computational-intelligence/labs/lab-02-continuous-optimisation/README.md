@@ -10,4 +10,3 @@ Python, NumPy, SciPy, PSO, CMA-ES, NES, DE, ABC, benchmarking, hyperparameter se
 ## Files
 - `lab02-continuous-optimisation.ipynb` — Lab notebook
 - `lab-guide.pdf` — Lab instructions
-- `lecture-notes.pdf` — Swarm Intelligence lecture slides

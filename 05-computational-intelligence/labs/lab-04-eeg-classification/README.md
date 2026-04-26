@@ -19,6 +19,4 @@ Hjorth parameters, spectral analysis, feature engineering, cross-validation
 ## Files
 - `lab04-eeg-classification.ipynb` — Lab notebook
 - `lab-guide.pdf` — Lab instructions
-- `complete-guide.pdf` — Full EEG feature extraction guide
-- `lecture-notes.pdf` — BCI and AI for EEG lecture slides
-- `data/` — EEG dataset
+- `data/` — EEG dataset (36 subject CSV files)

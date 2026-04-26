@@ -8,4 +8,3 @@ development environment used throughout the course.
 - `lab01-introduction.ipynb` — Lab notebook
 - `lab-guide.pdf` — Lab instructions
 - `code-reference.pdf` — Code reference sheet
-- `lecture-notes.pdf` — Lecture 1 slides

@@ -20,4 +20,3 @@ trimmed mean aggregation, telemetry simulation, seed-controlled reproducibility
 ## Files
 - `lab08-federated-learning.ipynb` — Lab notebook
 - `lab-guide.pdf` — Lab instructions
-- `lecture-notes.pdf` — Neuroevolution and Deep Optimisation lecture slides
