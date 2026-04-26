@@ -16,3 +16,14 @@ Thumbs.db
 
 # Trash folder (local only)
 _trash/
+
+# Removed legacy folders
+01-courses/
+02-projects/
+Automation Lab/
+Programming Methodology 2/
+_trash/
+
+# Root junk
+sample_text.txt
+text.txt
