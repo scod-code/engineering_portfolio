@@ -37,9 +37,4 @@ data-driven systems.
 **Data:** Pandas, NumPy, Matplotlib, Seaborn, MongoDB  
 **Tools:** Jupyter Notebook, Git, VS Code
 
----
 
-## Forthcoming
-
-Reinforcement learning, machine learning pipelines, and robotics project work
-developed during MSc coursework will be added as the programme progresses.
