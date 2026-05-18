@@ -4,7 +4,7 @@
 // Submit the .h file only
 //
 #include <iostream>
-#include "hw5b.h"
+#include "course-graph.hpp"
 
 int main() {
     CourseGraph graph;
@@ -78,4 +78,3 @@ int main() {
 //   14:332:453 Mobile App Engineering and User Experience
 // Semester: 4
 //   14:332:322 Principles of Communication Systems
-

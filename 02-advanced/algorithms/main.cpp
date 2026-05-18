@@ -5,7 +5,7 @@
 //
 #include <iostream>
 #include <stdexcept>
-#include "hw4b.h"
+#include "binary-search-tree.hpp"
 
 void printVector(const std::vector<int>& vec) { // note the "const" keyword
     for (int num : vec) {
@@ -135,5 +135,4 @@ int main() {
 // Range Search Results for [7, 25]
 // 7 8 9 10 17 18 20 25 
 // Inorder Tree Walk of mirrored tree: 40 25 20 18 17 10 9 8 7 6 5 4 3 2 
-
 

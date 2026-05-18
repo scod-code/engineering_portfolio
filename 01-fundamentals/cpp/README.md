@@ -1,26 +1,27 @@
-# C++ Fundamentals
+# C and C++ Fundamentals
 
-Lab assignments and projects covering core C++ programming from syntax through
-applied image processing.
+Lab assignments and portfolio projects covering procedural C, object-oriented
+C++, memory management, and image-processing library design.
 
 ## Contents
 
 | Folder / File | Description |
-|---------------|-------------|
-| `labs/` | 11 lab PDFs (lab_01 through lab_12, lab_05 not present) |
-| `VS code/Project 1/` | Image processing pipeline in C — reads, processes, and writes image files |
-| `VS code/Project 2/` | Image processing in C++ using Image, Matrix, and Vector class implementations |
+| --- | --- |
+| `labs/` | Lab PDFs using consistent `lab-##` naming |
+| `projects/c-image-processing-library/` | C image-processing library with modular source files, headers, and Makefile |
+| `projects/cpp-image-processing-library/` | C++ image-processing library using `Image`, `Matrix`, and `Vector` classes |
 
 ## Project Highlights
 
-**Project 1** — C image processing pipeline using `imageutil` and `helpers` modules.
-Implements low-level image reading, transformation, and output without high-level libraries.
+**C image-processing library**: C pipeline using `imageutil` and `helpers`
+modules. Implements low-level image reading, transformation, and output without
+high-level libraries.
 
-**Project 2** — C++ object-oriented image processing. Implements custom `Image`, `Matrix`,
-and `Vector` classes with full source and header separation, demonstrating OOP design,
-memory management, and modular architecture.
+**C++ image-processing library**: object-oriented refactor. Implements custom
+`Image`, `Matrix`, and `Vector` classes with full source and header separation,
+demonstrating OOP design, memory management, and modular architecture.
 
 ## Skills Covered
 
 C/C++ syntax, control flow, functions, arrays, pointers, OOP, class design,
-header and source separation, Makefiles, image data handling
+header and source separation, Makefiles, image data handling.

@@ -4,7 +4,7 @@
 #include <vector>
 #include <ctime>
 #include <cstdlib>
-#include "hw2b.h"
+#include "event-timeline.hpp"
 
 int main(int argc, char* argv[]) {
     if (argc != 3) {

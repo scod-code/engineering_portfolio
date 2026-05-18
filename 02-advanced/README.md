@@ -1,25 +1,29 @@
-# Advanced C++
+# Advanced C++ Algorithms
 
-Three substantial assignments demonstrating advanced C++ programming concepts
-including custom data structure design, algorithm implementation, and
-performance-focused optimisation.
+Three substantial C++ assignments demonstrating advanced data structures,
+algorithm implementation, and performance-aware design. This section aligns
+with the CV projects on min-heap event aggregation, binary search trees,
+dynamic programming, graph algorithms, and course scheduling.
 
 ## Contents
 
 | Folder | Focus | Key Files |
-|--------|-------|-----------|
-| `data-structures/` | Custom data structure design and implementation | `main.cpp`, `hw2b-sco46.h`, `location0`–`location4` (test data files) |
-| `algorithms/` | Algorithm design, implementation and execution | `main.cpp`, `hw4b-sco46.h`, `hw4b_program` |
-| `optimization/` | Performance-focused implementation with executable output | `main.cpp`, `hw5b-sco46.h`, `hw5b_exec` |
+| --- | --- | --- |
+| `data-structures/` | Timeline aggregation from multiple location event streams | `main.cpp`, `event-timeline.hpp`, `location0` through `location9` |
+| `algorithms/` | Binary search tree implementation and traversal operations | `main.cpp`, `binary-search-tree.hpp` |
+| `optimization/` | Course-prerequisite graph and topological scheduling | `main.cpp`, `course-graph.hpp` |
 
 ## Notes
 
-- `location0` through `location4` in `data-structures/` are test data files
-  used to validate the data structure implementation against location-based inputs
-- Each assignment folder contains a header file defining the interface,
-  a `main.cpp` implementing the logic, and an executable output
+- `data-structures/` keeps the original `location0` through `location9`
+  filenames because `main.cpp` reads that pattern at runtime.
+- Header files were renamed from submission identifiers to descriptive
+  portfolio names.
+- Compiled executables are retained under `build-artifacts/`, but the source
+  and headers are the primary evidence.
 
 ## Skills Demonstrated
 
-Abstract data types, interface design via header files, algorithm complexity,
-memory management, test-driven validation, compiled executable output
+Abstract data types, C++ templates, binary search trees, min-heaps,
+topological sorting, graph representation, complexity analysis, memory
+management, source/header separation.
