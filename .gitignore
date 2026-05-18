@@ -1,29 +1,92 @@
-# Jupyter
+# ============================================================================
+# Jupyter & IPython
+# ============================================================================
 .ipynb_checkpoints/
 *.ipynb_checkpoints
+.ipython/
+*.ipynb_checkpoints/
 
+# ============================================================================
 # Python
+# ============================================================================
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.Python
+env/
+venv/
+ENV/
+.venv
 
-# VS Code
+# ============================================================================
+# IDE & Editors
+# ============================================================================
 .vscode/
-
-# OS
+.idea/
+*.swp
+*.swo
+*~
 .DS_Store
 Thumbs.db
 
-# Trash folder (local only)
-_trash/
+# ============================================================================
+# Large Datasets (auto-downloaded, not version controlled)
+# ============================================================================
+# Artificial Perception coursework datasets
+Artificial\ Perception/Coursework/coursework_artificial_perception/ravdess_data/
+Artificial\ Perception/Coursework/coursework_artificial_perception/felt_data/
+Artificial\ Perception/Coursework/coursework_artificial_perception/cache/
+Artificial\ Perception/Coursework/coursework_artificial_perception/results/
 
-# Removed legacy folders
+# ESC-10 audio dataset
+Artificial\ Perception/Lecture\ 5/ESC-10/
+
+# VCTK speaker dataset
+Artificial\ Perception/Lecture\ 6/VCTK-small/
+
+# ============================================================================
+# Model Checkpoints & Artifacts
+# ============================================================================
+*.h5
+*.pkl
+*.pickle
+*.joblib
+*.model
+*.pt
+*.pth
+*.ckpt
+*.weights
+
+# ============================================================================
+# Temporary & Build Files
+# ============================================================================
+*.tmp
+*.temp
+*.log
+*.out
+*.zip
+*.tar.gz
+*.rar
+
+# ============================================================================
+# Removed Legacy Folders
+# ============================================================================
 01-courses/
 02-projects/
-Automation Lab/
-Programming Methodology 2/
+Automation\ Lab/
+Programming\ Methodology\ 2/
 _trash/
 
-# Root junk
+# ============================================================================
+# Root Junk Files
+# ============================================================================
 sample_text.txt
 text.txt
+.env
+.env.local
