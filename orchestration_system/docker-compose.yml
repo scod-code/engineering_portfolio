@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=password123
+      - N8N_ENCRYPTION_KEY=your-encryption-key-here-change-this
+      - N8N_PROTOCOL=http
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_WEBHOOK_URL=http://localhost:5678/
+      - EXECUTIONS_DATA_PRUNE=true
+      - EXECUTIONS_DATA_MAX_AGE=168
+      - GENERIC_TIMEZONE=UTC
+    volumes:
+      - ./n8n_data:/home/node/.n8n
+      - ./n8n_local_scripts:/files
+    networks:
+      - orchestration-network
+
+  prefect-server:
+    image: prefecthq/prefect:2-python3.11
+    container_name: prefect-server
+    restart: unless-stopped
+    ports:
+      - "4200:4200"
+    environment:
+      - PREFECT_API_URL=http://localhost:4200/api
+      - PREFECT_UI_URL=http://localhost:4200
+      - PREFECT_SERVER_DATABASE_CONNECTION_URL=postgresql://prefect:prefect@prefect-db:5432/prefect
+    depends_on:
+      - prefect-db
+    command: prefect server start
+    volumes:
+      - ./prefect_data:/root/.prefect
+    networks:
+      - orchestration-network
+
+  prefect-db:
+    image: postgres:15
+    container_name: prefect-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=prefect
+      - POSTGRES_PASSWORD=prefect
+      - POSTGRES_DB=prefect
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    networks:
+      - orchestration-network
+
+  prefect-agent:
+    image: prefecthq/prefect:2-python3.11
+    container_name: prefect-agent
+    restart: unless-stopped
+    depends_on:
+      - prefect-server
+    environment:
+      - PREFECT_API_URL=http://prefect-server:4200/api
+    command: prefect agent start -q default
+    volumes:
+      - ./prefect_flows:/opt/prefect/flows
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - orchestration-network
+
+networks:
+  orchestration-network:
+    driver: bridge
+
+volumes:
+  n8n_data:
+  prefect_data:
+  postgres_data:

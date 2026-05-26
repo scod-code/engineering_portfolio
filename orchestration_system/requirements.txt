@@ -1,0 +1,33 @@
+# Core Orchestration
+prefect>=2.0.0
+prefect-docker>=0.3.0
+
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.0
+
+# API & Web
+requests>=2.31.0
+fastapi>=0.104.0
+uvicorn>=0.24.0
+python-dotenv>=1.0.0
+
+# Development
+pytest>=7.4.0
+black>=23.0.0
+flake8>=6.0.0
+pytest-cov>=4.0.0
+
+# Utilities
+pyyaml>=6.0
+click>=8.1.0
+rich>=13.0.0
+loguru>=0.7.0
+
+# ML/AI
+openai>=1.0.0
+langchain>=0.0.300
+crewai>=0.1.0
