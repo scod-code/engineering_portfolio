@@ -104,13 +104,6 @@ setup_project.bat
 2. **Orchestration Guide**: `orchestration_system/SIMPLE_GUIDE.md`
 3. **Project README**: `agentic-workflow/README.md`
 
-## 🎓 **Academic Context**
-
-This project was developed for:
-- **MSc in Robotics and Intelligent Systems** at NTU
-- **COMP40321 Research Methods** submission
-- **AdaptLearn project**: Hyperheuristic-orchestrated intelligent tutoring system
-- **Supervision**: Dr Jordan Bird
 
 ## 🔄 **Next Steps for scod-code Repository**
 
