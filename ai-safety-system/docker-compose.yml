@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  notebook:
+    image: pedrombmachado/nest:comp40771
+    container_name: comp40771_cwk
+    ports:
+      - "8081:8080"
+    volumes:
+      - docker_comp40771:/opt/data
+    environment:
+      - NEST_CONTAINER_MODE=jupyterlab
+    security_opt:
+      - seccomp=unconfined
+    cap_add:
+      - SYS_PTRACE
+    restart: unless-stopped
+
+  mqtt-broker:
+    image: eclipse-mosquitto:2
+    container_name: mqtt-broker
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+    restart: unless-stopped
+
+  orchestrator:
+    image: pedrombmachado/nest:comp40771
+    container_name: cwk_orchestrator
+    depends_on:
+      - mqtt-broker
+    volumes:
+      - docker_comp40771:/opt/data
+    environment:
+      - NEST_CONTAINER_MODE=script
+    command: python /opt/data/cwk/src/mqtt_publish.py
+    restart: unless-stopped
+
+volumes:
+  docker_comp40771:
+    external: true

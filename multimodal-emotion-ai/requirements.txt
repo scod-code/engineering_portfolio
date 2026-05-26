@@ -1,0 +1,9 @@
+zenodo-get>=3.0.0
+librosa
+numpy
+scikit-learn
+torch
+torchvision
+opencv-python
+mediapipe
+tqdm

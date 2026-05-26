@@ -1,4 +1,6 @@
+# ============================================================================
 # Python
+# ============================================================================
 __pycache__/
 *.py[cod]
 *$py.class
@@ -28,14 +30,26 @@ ENV/
 .env
 .venv
 
-# IDE
+# ============================================================================
+# Jupyter & IPython
+# ============================================================================
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+.ipython/
+*.ipynb_checkpoints/
+
+# ============================================================================
+# IDE & Editors
+# ============================================================================
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# OS
+# ============================================================================
+# OS Files
+# ============================================================================
 .DS_Store
 .DS_Store?
 ._*
@@ -43,7 +57,11 @@ ENV/
 .Trashes
 ehthumbs.db
 Thumbs.db
+Desktop.ini
 
+# ============================================================================
+# Agentic Workflow Specific
+# ============================================================================
 # Docker and n8n data
 n8n_data/
 postgres_data/
@@ -60,72 +78,93 @@ Somto_Osigwe_*
 # Test files
 test_thesis_sample.docx
 
-# Logs
+# ============================================================================
+# Large Datasets (auto-downloaded, not version controlled)
+# ============================================================================
+# Artificial Perception coursework datasets
+Artificial\ Perception/Coursework/coursework_artificial_perception/ravdess_data/
+Artificial\ Perception/Coursework/coursework_artificial_perception/felt_data/
+Artificial\ Perception/Coursework/coursework_artificial_perception/cache/
+Artificial\ Perception/Coursework/coursework_artificial_perception/results/
+
+# ESC-10 audio dataset
+Artificial\ Perception/Lecture\ 5/ESC-10/
+
+# VCTK speaker dataset
+Artificial\ Perception/Lecture\ 6/VCTK-small/
+
+# ============================================================================
+# Model Checkpoints & Artifacts
+# ============================================================================
+*.h5
+*.pkl
+*.pickle
+*.joblib
+*.model
+*.pt
+*.pth
+*.ckpt
+*.weights
+
+# ============================================================================
+# Logs & Runtime Data
+# ============================================================================
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Runtime data
 pids
 *.pid
 *.seed
 *.pid.lock
 
-# Coverage directory used by tools like istanbul
-coverage/
-
-# nyc test coverage
-.nyc_output
-
-# node_modules
+# ============================================================================
+# Node.js & Web
+# ============================================================================
 node_modules/
-
-# Optional npm cache directory
 .npm
-
-# Optional eslint cache
 .eslintcache
-
-# Output of 'npm pack'
 *.tgz
-
-# dotenv environment variables file
-.env
-
-# Next.js build output
 .next
-
-# Nuxt.js build / generate output
 .nuxt
 dist
-
-# Gatsby files
 .cache/
 public
-
-# VuePress build output
 .vuepress/dist
-
-# Serverless directories
 .serverless/
-
-# FuseBox cache
 .fusebox/
-
-# DynamoDB Local files
 .dynamodb/
 
-# Temporary folders
+# ============================================================================
+# Coverage & Testing
+# ============================================================================
+coverage/
+.nyc_output
+
+# ============================================================================
+# Temporary & Build Files
+# ============================================================================
 tmp/
 temp/
+*.tmp
+*.temp
+*.out
+*.zip
+*.tar.gz
+*.rar
 
-# Windows
-Thumbs.db
-Desktop.ini
+# ============================================================================
+# Removed Legacy Folders
+# ============================================================================
+01-courses/
+02-projects/
+Automation\ Lab/
+Programming\ Methodology\ 2/
+_trash/
 
-# Linux
-*~
-
-# macOS
-.DS_Store
+# ============================================================================
+# Root Junk Files
+# ============================================================================
+sample_text.txt
+text.txt
+.env.local

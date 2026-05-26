@@ -1,0 +1,28 @@
+Project Silica
+Overview
+People
+Publications
+Videos
+News & features
+Humanity’s need for long-term data storage continue to grow at a staggering pace. As a species, we continue to generate large amounts of high-value data (our personal histories, medical, industrial, scientific data, etc.) that is crucial to our long-term survival, with demand projected to exceed hundreds of zettabytes by 2025. Despite this need, existing magnetic media simply do not provide a sustainable and cost-effective solution. Magnetic media degrades over time, requiring significant emissions, energy, and cost to safely store long-lived data.
+
+Project Silica is developing the world’s first storage technology designed and built from the media up to address humanity’s need for a long-term, sustainable storage technology. We store data in quartz glass: a low-cost, durable WORM media that is electromagnetic field-proof, and offers lifetimes of tens to hundreds of thousands of years. This has huge consequences for sustainability, as it means we can leave data in situ, and eliminate the costly cycle of periodically copying data to a new media generation.
+
+We’re re-thinking how large-scale storage systems are built in order to fully exploit the properties of the glass media and create a sustainable and secure storage system to support archival storage for decades to come! We are co-designing the hardware and software stacks from scratch, from the media all the way up to the cloud user API. This includes a novel, low-power design for the media library that challenges what the robotics and mechanics of archival storage systems look like.
+
+We use different technologies to write and read the data: ultrafast femtosecond lasers to write, and polarization-sensitive microscopy using regular light to read. As a consequence, the Silica storage system guarantees true airgap by design for the storage media; it’s physically impossible to accidentally overwrite data during reading, as there is simply not enough power to modify the glass material. The mechanical design of the media library also makes it impossible for media to find its way back into a writer, further guaranteeing the security of archived data for its entire lifetime.
+
+As a storage technology, Silica offers volumetric data densities higher than current magnetic tapes (raw capacity upwards of 7TB in a square glass platter the size of a DVD), and using beam steering of the laser beam, we’re able to achieve system-level aggregate write throughputs comparable to current archival systems.
+
+For more details on the technology and project (including a prototype of our media library in action!), see the following videos:
+
+
+
+
+
+
+Project Silica was featured in a Microsoft Ignite 2017 keynote on future storage technologies.
+
+Project Silica is part of the broader Cloud Systems Futures research area, which explores the future of cloud infrastructure at the intersection of optics and computer science.
+
+In Nov 2019, Satya Nadella, CEO of Microsoft, announced a collaboration between Project Silica and Warner Brothers, which was an early proof of concept demonstrator of the technology. 
