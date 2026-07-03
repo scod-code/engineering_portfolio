@@ -100,13 +100,6 @@ make start  # or .\start.ps1 on Windows
 - **Automation**: Scheduled tasks, data pipelines, ML workflows
 - **Academic writing tools**: Document editing, formatting, quality control
 
-### Through Other Projects:
-- **Machine Learning**: CNN, RNN, transfer learning, multimodal AI
-- **Computer Vision**: OpenCV, classical algorithms, deep learning
-- **Data Science**: Pandas, NumPy, Scikit-learn, visualization
-- **Software Engineering**: C/C++, Python, Docker, MLOps
-- **AI Safety**: Explainable AI, code evaluation, security
-
 ## 📚 Professional Standards Used
 
 - Descriptive, lowercase folder names for portfolio-facing project directories
@@ -116,14 +109,6 @@ make start  # or .\start.ps1 on Windows
 - Coursework artifacts preserved when they provide evidence, with README files
   explaining their purpose
 - **NEW**: Practical tools with real-world applications in academic and professional contexts
-
-## 🎓 Academic Context
-
-The **Agentic Workflow** project was developed during my **MSc in Robotics and Intelligent Systems** at NTU, specifically for:
-- **COMP40321 Research Methods** submission editing
-- **AdaptLearn project**: Hyperheuristic-orchestrated intelligent tutoring system
-- **Supervised by Dr Jordan Bird**
-- Demonstrates practical application of automation tools in academic research
 
 ## 📞 Contact
 
