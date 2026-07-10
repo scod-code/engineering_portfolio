@@ -8,8 +8,8 @@ echo submission for your MSc in Robotics and Intelligent Systems.
 echo.
 echo Features:
 echo • Fix punctuation (em-dashes, semicolons)
-echo • Remove AI-generated tone
-echo • Humanize text with Superhumanizer AI
+echo • Review stock phrases and clarity
+echo • Compare wording with an optional rewriting service
 echo • Work section-by-section with approval
 echo.
 echo ========================================

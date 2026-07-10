@@ -2,12 +2,12 @@
 
 ## 🎯 **What This Tool Does**
 
-This is a **focused tool** for editing your MSc thesis (COMP40321 Research Methods submission). It specifically addresses:
+This is a **focused tool** for reviewing long-form MSc academic writing. It specifically addresses:
 
 1. **Punctuation fixes** - Em-dashes, semicolons, spacing
-2. **AI-tone removal** - Makes text sound more human/academic
+2. **Phrase-quality review** - Flags stock phrases and suggests clearer academic wording
 3. **Section-by-section editing** - You approve each change
-4. **Superhumanizer AI integration** - Optional AI-powered humanization
+4. **External rewriting-service integration** - Optional comparison with a third-party rewriting service
 
 ---
 
@@ -33,8 +33,8 @@ The editor will show you a menu:
 ```
 1. Fix em-dashes
 2. Fix semicolons  
-3. Humanize specific section
-4. Humanize entire document
+3. Review specific section
+4. Review entire document
 5. Show changes summary
 6. Save and exit
 7. Exit without saving
@@ -70,8 +70,8 @@ After:  The system learns from data. It adapts to students. It improves over tim
 
 ---
 
-### **Task 3: Humanize Specific Section**
-**What it does**: Removes AI-generated phrases from a section you choose
+### **Task 3: Review Specific Section**
+**What it does**: Suggests clearer wording for stock phrases in a section you choose
 
 **Example**:
 ```
@@ -82,13 +82,13 @@ After:  This study uses...
 **How to use**: 
 1. Select option `3`
 2. Choose a section (e.g., "2.2 Objectives")
-3. Enter Superhumanizer API key (optional)
+3. Enter an external rewriting-service API key (optional)
 4. Review changes before applying
 
 ---
 
-### **Task 4: Use Superhumanizer AI**
-**What it does**: Uses https://superhumanizer.ai/ to humanize text
+### **Task 4: Use an External Rewriting Service**
+**What it does**: Uses an optional third-party rewriting service to compare alternative wording
 
 **How to get API key**:
 1. Go to https://superhumanizer.ai/
@@ -146,7 +146,7 @@ thesis.txt.edited_20250126_143022.changes.json
 ### **Option A: Section-by-Section (Recommended)**
 ```
 1. Run: thesis_editor.bat
-2. Select: "3. Humanize specific section"
+2. Select: "3. Review specific section"
 3. Choose: "2.2 Objectives"
 4. Review changes → Approve
 5. Choose: "4. Resources Required"
@@ -164,9 +164,9 @@ thesis.txt.edited_20250126_143022.changes.json
 
 ### **Option C: Full AI Humanization**
 ```
-1. Get Superhumanizer API key
+1. Get an external rewriting-service API key
 2. Run: thesis_editor.bat
-3. Select: "4. Humanize entire document"
+3. Select: "4. Review entire document"
 4. Enter API key
 5. Review all changes
 6. Save when done
@@ -191,7 +191,7 @@ thesis.txt.changes.json       (list of all changes made)
 ### **Common Issues to Fix:**
 1. **Em-dashes**: Replace with colons or commas
 2. **Semicolon chains**: Break into separate sentences
-3. **AI phrases**: Remove "leveraging", "harnessing", "utilizing"
+3. **Stock phrases**: Replace "leveraging", "harnessing", "utilizing" when simpler wording is clearer
 4. **Redundancies**: "computational compute" → "computational resources"
 5. **Typos**: "fort weekly" → "fortnightly"
 6. **Ranges**: Use en-dash: "weeks 1–8" not "weeks 1-8"
@@ -217,10 +217,10 @@ thesis.txt.changes.json       (list of all changes made)
   - `## Resources Required`
   - `4. METHODOLOGY`
 
-### **"Superhumanizer API failed"**
+### **"External rewriting-service API failed"**
 - Check internet connection
 - Verify API key is correct
-- Use local humanization (option 3 without API key)
+- Use local phrase review (option 3 without API key)
 
 ### **"Changes not saving"**
 - Make sure to select "6. Save and exit"
@@ -234,14 +234,14 @@ thesis.txt.changes.json       (list of all changes made)
 ### **Final Checklist:**
 1. [ ] All em-dashes fixed
 2. [ ] Semicolon chains broken up
-3. [ ] AI-generated phrases removed
+3. [ ] Stock phrases reviewed
 4. [ ] Typos corrected ("fortnightly")
 5. [ ] Week ranges use en-dash (Weeks 1–8)
 6. [ ] Read entire document aloud
 7. [ ] Check with supervisor (Dr Jordan Bird)
 
 ### **Quality Check:**
-- Does it sound like **you** wrote it?
+- Does the wording accurately reflect your intended argument?
 - Is the **academic tone** maintained?
 - Are **technical terms** used correctly?
 - Is the **structure** logical?
@@ -256,7 +256,7 @@ thesis.txt.changes.json       (list of all changes made)
 - **Continual reinforcement learning**: Keep this term
 - **Intelligent tutoring system**: Keep this term
 
-### **What to Humanize:**
+### **What to Review:**
 - **Remove**: "leveraging", "harnessing", "utilizing"
 - **Simplify**: "computational compute" → "resources"
 - **Clarify**: "n = 100" → "100 samples"
@@ -278,7 +278,7 @@ Enter path to your document: thesis.txt
 📝 EDITING MENU
 1. Fix em-dashes
 2. Fix semicolons
-3. Humanize specific section
+3. Review specific section
 ...
 
 Select: 1
@@ -298,13 +298,13 @@ Available sections:
   ...
 
 Enter section number: 1
-Superhumanizer API key: [your-key]
+External rewriting-service API key: [your-key]
 
 📝 Original: It is important to note that this study aims to...
-📝 Humanized: This study examines...
+📝 Suggested: This study examines...
 Apply? (y/n): y
 
-✅ Section humanized
+✅ Section reviewed
 
 Select: 6
 Save as: thesis_final.txt

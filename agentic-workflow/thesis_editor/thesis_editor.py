@@ -283,7 +283,7 @@ class ThesisEditor:
     
     def scan_ai_phrases(self) -> List[Dict]:
         """Scan for AI phrases and prepare for Superhumanizer."""
-        print("\n🤖 Scanning for AI-generated phrases...")
+        print("\nScanning for stock phrases and clarity issues...")
         
         ai_phrases = []
         

@@ -6,20 +6,20 @@ Since I cannot directly edit the `scod-code/scod-code.git` repository, here are 
 
 Add a new section to your `scod-code` repository README or portfolio page:
 
-### **New Project: Agentic Workflow & Academic Tools**
+### **New Project: Agentic Workflow & Research Automation Tools**
 
 **Location**: `engineering_portfolio/agentic-workflow/`
 
-**Description**: A comprehensive collection of tools for academic writing automation and workflow orchestration, developed during my MSc in Robotics and Intelligent Systems.
+**Description**: A self-directed engineering project exploring how local automation can support research productivity, document quality, and reproducible workflows during my MSc in Robotics and Intelligent Systems.
 
 **Components**:
 
 1. **Thesis Editor** (`thesis_editor/`)
    - Fixes punctuation (em-dashes, semicolons)
-   - Removes AI-generated tone
-   - Humanizes text with Superhumanizer AI integration
+   - Flags overused stock phrases and suggests clearer academic wording
+   - Supports optional external rewriting-service comparison
    - Works paragraph-by-paragraph with approval
-   - Preserves original files, creates backups
+   - Preserves original files, creates backups, and writes change logs
 
 2. **Orchestration System** (`orchestration_system/`)
    - n8n: Visual workflow automation (like Zapier, but local)
@@ -28,7 +28,7 @@ Add a new section to your `scod-code` repository README or portfolio page:
    - Example workflows: Data pipelines, ML training, ETL processes
 
 **Use Cases**:
-- Academic thesis editing (MSc research papers)
+- Academic document-quality review for long-form reports and research papers
 - Workflow automation for research projects
 - ML pipeline scheduling and monitoring
 - Data processing and ETL workflows
@@ -37,11 +37,11 @@ Add a new section to your `scod-code` repository README or portfolio page:
 - Python development with python-docx
 - Workflow orchestration (n8n, Prefect)
 - Docker containerization
-- API integration (Superhumanizer AI)
+- API integration with external rewriting and web services
 - Automation and scheduling
 
 **Academic Context**:
-- Developed for COMP40321 Research Methods submission
+- Developed during COMP40321 Research Methods as a document-quality and workflow exploration
 - Used for AdaptLearn project (hyperheuristic-orchestrated intelligent tutoring system)
 - Supervised by Dr Jordan Bird at NTU
 
@@ -58,11 +58,11 @@ Add this to your `scod-code` repository README:
 ```markdown
 ## 🚀 Recent Projects
 
-### Agentic Workflow & Academic Tools
-A comprehensive suite of tools for academic writing automation and workflow orchestration.
+### Agentic Workflow & Research Automation Tools
+A self-directed suite of tools for document-quality review, workflow automation, and research productivity.
 
 **Features**:
-- Thesis editing with AI-tone removal
+- Academic document review with punctuation, clarity, and consistency checks
 - Workflow automation with n8n and Prefect
 - ML pipeline scheduling and monitoring
 - Data processing workflows
@@ -71,7 +71,7 @@ A comprehensive suite of tools for academic writing automation and workflow orch
 
 **Technologies**: Python, n8n, Prefect, Docker, python-docx
 
-**Context**: Developed during MSc in Robotics and Intelligent Systems at NTU for research paper editing and workflow automation.
+**Context**: Developed during MSc in Robotics and Intelligent Systems at NTU as a practical exploration of research automation and reproducible workflow design.
 ```
 
 ## 🛠️ How to Update
@@ -99,4 +99,4 @@ This project demonstrates:
 - **Real-world problem solving** for common academic challenges
 - **Professional tool development** with user-friendly interfaces
 
-The tools have been **tested and used** for editing actual MSc thesis submissions, proving their practical utility in academic contexts.
+The tools have been **implemented and tested** as a working personal automation toolkit, demonstrating practical utility across document review and workflow orchestration contexts.

@@ -17,7 +17,7 @@ the project evidence described across my role-specific CVs.
 | [`nlp-text-classification/`](./nlp-text-classification/) | Text classification, speech recognition, and audio classification labs |
 | [`data-engineering/`](./data-engineering/) | Data engineering and scalable analytics notes |
 | [`programming-foundations/`](./programming-foundations/) | Additional programming foundation summaries |
-| [`agentic-workflow/`](./agentic-workflow/) | Academic writing automation and workflow orchestration tools |
+| [`agentic-workflow/`](./agentic-workflow/) | Personal automation toolkit for document quality, workflow orchestration, and research productivity |
 | [`textile-retail-webapp/`](./textile-retail-webapp/) | **NEW**: Complete, deployed FastAPI and Vanilla JS e-commerce storefront with admin panel |
 
 ## 🚀 New: Textile Retail Web App
@@ -34,19 +34,19 @@ A luxury fashion and beauty e-commerce platform demonstrating full-stack enginee
 
 ## 🚀 New: Agentic Workflow Project
 
-A comprehensive collection of tools for academic writing automation and workflow orchestration, developed during my MSc in Robotics and Intelligent Systems.
+A self-directed engineering project exploring how local automation can support research productivity. The codebase brings together a document-quality assistant and a workflow orchestration sandbox, reflecting an initiative to turn repeated academic and technical tasks into reviewable, reproducible processes.
 
 ### **What's Included:**
 
 #### 1. **Thesis Editor** (`agentic-workflow/thesis_editor/`)
-A specialized tool for editing academic theses and research papers.
+A focused document-quality tool for reviewing long-form academic writing while keeping the author in control of each change.
 
 **Features:**
 - Fix punctuation (em-dashes, semicolons)
-- Remove AI-generated tone
-- Humanize text with Superhumanizer AI integration
-- Work paragraph-by-paragraph with approval
-- Preserves original files, creates backups
+- Flag overused stock phrases and suggest clearer academic wording
+- Optional external rewriting-service integration for comparison
+- Work paragraph-by-paragraph with approval before changes are applied
+- Preserve original files, create backups, and write change logs
 
 **Quick Start:**
 ```bash
@@ -70,10 +70,16 @@ make start  # or .\start.ps1 on Windows
 ```
 
 ### **Use Cases:**
-- **Academic writing**: Edit MSc theses, research papers, reports
+- **Academic writing**: Review structure, punctuation, clarity, and consistency in long-form reports
 - **Workflow automation**: Schedule tasks, connect APIs, process data
 - **ML pipelines**: Train, evaluate, and deploy models locally
 - **Data processing**: Extract, transform, and load data automatically
+
+### **Current State and Results:**
+- Implemented a working Python document-review workflow with backups, approval prompts, and change tracking
+- Built a local orchestration environment using n8n, Prefect, and Docker Compose
+- Demonstrated practical automation across document review, ETL-style workflows, and ML pipeline examples
+- Added portfolio-ready documentation that explains the engineering intent, system components, and reproducible usage steps
 
 ## 🎯 CV-Aligned Project Evidence
 
@@ -83,7 +89,7 @@ make start  # or .\start.ps1 on Windows
 - Jenkins/Docker/MQTT pipeline evidence in `ai-safety-system/`
 - Federated learning, RL, optimisation, and EEG work referenced through
   computational intelligence labs and supporting folders
-- **NEW**: Workflow orchestration and automation in `agentic-workflow/`
+- **NEW**: Self-directed workflow orchestration and automation in `agentic-workflow/`
 
 ### Computer Vision and Multimodal AI
 
@@ -102,16 +108,16 @@ make start  # or .\start.ps1 on Windows
 - Heart-failure prediction in
   `01-fundamentals/python/course-project/heart-failure-prediction.ipynb`
 - Applied analytics and visualisation work in `04-projects/`
-- **NEW**: Academic writing automation in `agentic-workflow/`
+- **NEW**: Document-quality automation in `agentic-workflow/`
 
 ## 🛠️ Technical Skills Demonstrated
 
 ### Through Agentic Workflow Project:
 - **Python development**: Custom document processing tools
 - **Workflow orchestration**: n8n, Prefect, Docker Compose
-- **API integration**: Superhumanizer AI, web services
+- **API integration**: External rewriting services and web APIs
 - **Automation**: Scheduled tasks, data pipelines, ML workflows
-- **Academic writing tools**: Document editing, formatting, quality control
+- **Academic writing tools**: Document review, formatting, quality control
 
 ### Through Other Projects:
 - **Machine Learning**: CNN, RNN, transfer learning, multimodal AI
@@ -134,7 +140,7 @@ make start  # or .\start.ps1 on Windows
 ## 🎓 Academic Context
 
 The **Agentic Workflow** project was developed during my **MSc in Robotics and Intelligent Systems** at NTU, specifically for:
-- **COMP40321 Research Methods** submission editing
+- **COMP40321 Research Methods** document-quality and workflow exploration
 - **AdaptLearn project**: Hyperheuristic-orchestrated intelligent tutoring system
 - **Supervised by Dr Jordan Bird**
 - Demonstrates practical application of automation tools in academic research

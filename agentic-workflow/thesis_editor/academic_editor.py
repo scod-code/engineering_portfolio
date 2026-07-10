@@ -2,7 +2,7 @@
 """
 Academic Document Editor for MSc Thesis
 Specifically for COMP40321 Research Methods submission
-Focused on punctuation fixes and AI-tone removal
+Focused on punctuation fixes and phrase-quality review
 """
 
 import re
@@ -324,10 +324,10 @@ class AcademicDocumentEditor:
     
     def humanize_with_superhumanizer(self, text: str, api_key: Optional[str] = None) -> str:
         """
-        Use Superhumanizer AI to humanize text.
+        Use an optional rewriting service to compare alternative wording.
         Note: This requires an API key from https://superhumanizer.ai/
         """
-        print("\n🤖 Using Superhumanizer AI to humanize text...")
+        print("\nUsing an optional rewriting service to compare wording...")
         
         if not api_key:
             print("  ⚠️  No API key provided. Using local rules instead.")
@@ -361,7 +361,7 @@ class AcademicDocumentEditor:
             return self._humanize_locally(text)
     
     def _humanize_locally(self, text: str) -> str:
-        """Apply local rules to humanize text."""
+        """Apply local rules for phrase-quality review."""
         # Common AI phrases and their more natural replacements
         replacements = {
             r'\bit is important to note that\b': 'Note that',

@@ -6,7 +6,7 @@ echo.
 echo This editor will help you fix:
 echo • Week ranges (Weeks 1-8 → Weeks 1–8)
 echo • Em-dashes (— → : or ,)
-echo • AI-generated phrases
+echo • Stock phrases and clarity issues
 echo.
 echo ========================================
 
