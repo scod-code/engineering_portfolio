@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - ASAA Fashion &amp; Beauty</title>
+  <meta name="description" content="ASAA Fashion &amp; Beauty House admin panel for product management." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #1a1a26;
+      --bg-card-hover: #22222f;
+      --bg-elevated: #1e1e2a;
+      --surface-glass: rgba(255,255,255,0.04);
+      --border-subtle: rgba(255,255,255,0.06);
+      --border-accent: rgba(168,130,255,0.3);
+      --text-primary: #f0eef6;
+      --text-secondary: #9590a8;
+      --text-muted: #6b6680;
+      --accent-purple: #a882ff;
+      --accent-purple-dim: #8b6cdb;
+      --accent-gold: #d4a853;
+      --accent-rose: #e87e9a;
+      --accent-green: #4ade80;
+      --gradient-btn: linear-gradient(135deg,#a882ff 0%,#9166e8 100%);
+      --gradient-btn-hover: linear-gradient(135deg,#b994ff 0%,#a07af0 100%);
+      --shadow-card: 0 4px 24px rgba(0,0,0,0.3);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --font-sans: 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      --font-display: 'Playfair Display',Georgia,serif;
+      --transition-fast: 0.2s cubic-bezier(0.4,0,0.2,1);
+      --transition-med: 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--font-sans);background:var(--bg-primary);color:var(--text-primary);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+    /* ===================== LAYOUT ===================== */
+    .admin-layout{display:flex;min-height:100vh}
+    .sidebar{width:240px;background:var(--bg-secondary);border-right:1px solid var(--border-subtle);padding:1.75rem 1rem;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;flex-shrink:0;overflow-y:auto}
+    .sidebar-logo{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--text-primary);text-decoration:none;display:block;margin-bottom:0.25rem}
+    .sidebar-logo span{background:var(--gradient-btn);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .sidebar-sub{font-size:0.75rem;color:var(--text-muted);margin-bottom:1.5rem}
+    .sidebar-label{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;padding:0 0.5rem}
+    .sidebar-nav{list-style:none;display:flex;flex-direction:column;gap:0.2rem}
+    .sidebar-nav a{display:flex;align-items:center;gap:0.6rem;padding:0.55rem 0.75rem;border-radius:var(--radius-sm);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;transition:all var(--transition-fast)}
+    .sidebar-nav a:hover,.sidebar-nav a.active{background:var(--surface-glass);color:var(--text-primary)}
+    .sidebar-nav a.active{color:var(--accent-purple)}
+    .sidebar-footer{margin-top:auto;padding-top:1rem;border-top:1px solid var(--border-subtle)}
+    .sidebar-footer a{font-size:0.8rem;color:var(--text-muted);text-decoration:none}
+    .sidebar-footer a:hover{color:var(--accent-purple)}
+
+    .admin-main{flex:1;padding:2rem;overflow-x:hidden;min-width:0}
+    .admin-header{margin-bottom:2rem}
+    .admin-header h1{font-family:var(--font-display);font-size:1.75rem;font-weight:700;margin-bottom:0.3rem}
+    .admin-header p{color:var(--text-muted);font-size:0.875rem}
+    .admin-session{margin-top:0.75rem;display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap}
+
+    /* ===================== BUTTONS ===================== */
+    .btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.55rem 1.1rem;border-radius:var(--radius-sm);border:1px solid var(--border-subtle);background:var(--surface-glass);color:var(--text-primary);font-family:var(--font-sans);font-size:0.875rem;font-weight:500;cursor:pointer;transition:all var(--transition-fast)}
+    .btn:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.12)}
+    .btn-primary{background:var(--gradient-btn);border-color:transparent;color:#fff}
+    .btn-primary:hover{background:var(--gradient-btn-hover)}
+    .btn-danger{border-color:rgba(232,126,154,0.3);color:var(--accent-rose)}
+    .btn-danger:hover{background:rgba(232,126,154,0.1)}
+    .btn-sm{padding:0.35rem 0.75rem;font-size:0.8rem}
+    .btn-icon{padding:0.35rem 0.5rem;font-size:1rem;line-height:1}
+
+    /* ===================== FORMS ===================== */
+    .form-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:1.75rem;margin-bottom:2rem}
+    .form-card h2{font-size:1.1rem;font-weight:600;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem}
+    .form-group{display:flex;flex-direction:column;gap:0.4rem}
+    .form-group label{font-size:0.8rem;font-weight:500;color:var(--text-secondary);letter-spacing:0.02em}
+    .form-input{background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);font-family:var(--font-sans);font-size:0.875rem;padding:0.6rem 0.85rem;transition:border-color var(--transition-fast);width:100%}
+    .form-input:focus{outline:none;border-color:var(--accent-purple)}
+    .form-input::placeholder{color:var(--text-muted)}
+    select.form-input{cursor:pointer}
+    select.form-input option{background:var(--bg-elevated)}
+    textarea.form-input{resize:vertical;min-height:80px;line-height:1.5}
+    .char-count{font-size:0.72rem;color:var(--text-muted);text-align:right;margin-top:0.15rem}
+
+    /* ===================== TABS ===================== */
+    .tabs{display:flex;gap:0;border-bottom:1px solid var(--border-subtle);margin-bottom:1.5rem}
+    .tab-btn{background:none;border:none;padding:0.7rem 1.2rem;font-family:var(--font-sans);font-size:0.85rem;font-weight:500;color:var(--text-muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all var(--transition-fast)}
+    .tab-btn:hover{color:var(--text-primary)}
+    .tab-btn.active{color:var(--accent-purple);border-bottom-color:var(--accent-purple)}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+
+    /* ===================== FORM GRIDS ===================== */
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.25rem}
+    .form-grid .full-width{grid-column:1/-1}
+    .form-actions{display:flex;gap:0.75rem;justify-content:flex-end;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border-subtle)}
+
+    /* ===================== IMAGE UPLOAD ===================== */
+    .drop-zone{border:2px dashed var(--border-accent);border-radius:var(--radius-md);padding:2rem 1rem;text-align:center;cursor:pointer;transition:all var(--transition-fast);position:relative;background:var(--surface-glass)}
+    .drop-zone:hover,.drop-zone.drag-over{border-color:var(--accent-purple);background:rgba(168,130,255,0.05)}
+    .drop-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+    .drop-zone-icon{font-size:2rem;margin-bottom:0.5rem}
+    .drop-zone p{color:var(--text-muted);font-size:0.875rem}
+    .drop-zone strong{color:var(--accent-purple)}
+    .image-preview-strip{display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:1rem}
+    .image-thumb{width:80px;height:80px;border-radius:var(--radius-sm);object-fit:cover;border:2px solid var(--border-subtle);transition:border-color var(--transition-fast)}
+    .image-thumb:first-child{border-color:var(--accent-gold)}
+    .image-thumb-wrap{position:relative}
+    .image-thumb-remove{position:absolute;top:-6px;right:-6px;background:var(--accent-rose);border:none;color:#fff;border-radius:50%;width:18px;height:18px;font-size:0.7rem;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+    .url-divider{display:flex;align-items:center;gap:0.75rem;color:var(--text-muted);font-size:0.8rem;margin:1rem 0}
+    .url-divider::before,.url-divider::after{content:'';flex:1;height:1px;background:var(--border-subtle)}
+
+    /* ===================== CHIPS / TAGS ===================== */
+    .chip-group{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem}
+    .chip{padding:0.3rem 0.65rem;border-radius:50px;border:1px solid var(--border-subtle);background:var(--surface-glass);color:var(--text-secondary);font-size:0.78rem;cursor:pointer;transition:all var(--transition-fast);user-select:none}
+    .chip:hover{border-color:var(--accent-purple);color:var(--accent-purple)}
+    .chip.selected{background:rgba(168,130,255,0.15);border-color:var(--accent-purple);color:var(--accent-purple)}
+    .chip-input-row{display:flex;gap:0.5rem;margin-top:0.5rem}
+    .chip-input-row input{flex:1}
+
+    /* ===================== TOGGLES ===================== */
+    .toggle-row{display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid var(--border-subtle)}
+    .toggle-row:last-child{border-bottom:none}
+    .toggle-label{font-size:0.875rem;font-weight:500}
+    .toggle-desc{font-size:0.78rem;color:var(--text-muted);margin-top:0.1rem}
+    .toggle{position:relative;display:inline-block;width:40px;height:22px}
+    .toggle input{opacity:0;width:0;height:0;position:absolute}
+    .toggle-slider{position:absolute;cursor:pointer;inset:0;background:var(--border-subtle);border-radius:50px;transition:var(--transition-fast)}
+    .toggle-slider::before{position:absolute;content:'';height:16px;width:16px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:var(--transition-fast)}
+    .toggle input:checked+.toggle-slider{background:var(--accent-purple)}
+    .toggle input:checked+.toggle-slider::before{transform:translateX(18px)}
+
+    /* ===================== TABLE ===================== */
+    .table-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);overflow:hidden}
+    .table-card-header{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid var(--border-subtle)}
+    .table-card-header h2{font-size:1rem;font-weight:600;display:flex;align-items:center;gap:0.5rem}
+    .product-count{background:rgba(168,130,255,0.15);color:var(--accent-purple);font-size:0.75rem;padding:0.2rem 0.55rem;border-radius:50px;font-weight:600}
+    .data-table{width:100%;border-collapse:collapse;font-size:0.85rem}
+    .data-table th{padding:0.75rem 1rem;text-align:left;font-size:0.72rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);border-bottom:1px solid var(--border-subtle);background:var(--bg-secondary)}
+    .data-table td{padding:0.85rem 1rem;border-bottom:1px solid var(--border-subtle);vertical-align:middle}
+    .data-table tr:last-child td{border-bottom:none}
+    .data-table tr:hover td{background:var(--surface-glass)}
+    .cell-thumb{width:44px;height:44px;border-radius:var(--radius-sm);object-fit:cover;background:var(--bg-elevated);border:1px solid var(--border-subtle)}
+    .cell-thumb-placeholder{width:44px;height:44px;border-radius:var(--radius-sm);background:var(--bg-elevated);border:1px solid var(--border-subtle);display:flex;align-items:center;justify-content:center;font-size:1.25rem;color:var(--text-muted)}
+    .cell-name{font-weight:500;max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .cell-sku{font-family:monospace;font-size:0.75rem;color:var(--text-muted)}
+    .cell-price{font-weight:600;color:var(--accent-gold)}
+    .cell-sale{font-weight:600;color:var(--accent-rose)}
+    .cell-price-orig{font-size:0.75rem;color:var(--text-muted);text-decoration:line-through;display:block}
+    .cell-category span{background:rgba(168,130,255,0.1);border:1px solid rgba(168,130,255,0.2);color:var(--accent-purple);font-size:0.72rem;padding:0.2rem 0.55rem;border-radius:50px;font-weight:500}
+    .cell-stock{font-size:0.8rem;font-weight:500}
+    .stock-ok{color:var(--accent-green)}
+    .stock-low{color:var(--accent-gold)}
+    .stock-out{color:var(--accent-rose)}
+    .badge{font-size:0.68rem;padding:0.15rem 0.45rem;border-radius:50px;font-weight:600;margin-left:0.3rem}
+    .badge-featured{background:rgba(212,168,83,0.15);color:var(--accent-gold)}
+    .badge-inactive{background:rgba(107,102,128,0.2);color:var(--text-muted)}
+    .cell-actions{display:flex;gap:0.4rem;white-space:nowrap}
+
+    /* ===================== TOAST ===================== */
+    .toast-container{position:fixed;bottom:1.5rem;right:1.5rem;display:flex;flex-direction:column;gap:0.5rem;z-index:9999}
+    .toast{background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:0.75rem 1rem;color:var(--text-primary);box-shadow:var(--shadow-card);display:flex;align-items:center;gap:0.6rem;animation:slideIn 0.3s ease-out;font-size:0.825rem;max-width:300px}
+    .toast.leaving{opacity:0;transform:translateX(100%);transition:all 0.3s ease}
+    .toast-success{border-left:3px solid var(--accent-green)}
+    .toast-error{border-left:3px solid var(--accent-rose)}
+    @keyframes slideIn{from{opacity:0;transform:translateX(100%)}to{opacity:1;transform:translateX(0)}}
+
+    /* ===================== AUTH PANEL ===================== */
+    .auth-shell{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:radial-gradient(ellipse at 50% 0%,rgba(168,130,255,0.06) 0%,transparent 60%)}
+    .auth-panel{width:min(460px,100%);background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow-card)}
+    .auth-panel h1{font-family:var(--font-display);font-size:1.65rem;margin-bottom:0.35rem}
+    .auth-panel p{color:var(--text-muted);font-size:0.875rem;margin-bottom:1.5rem}
+    .auth-switch{margin-top:1rem;color:var(--text-muted);font-size:0.82rem;text-align:center}
+    .auth-switch button{background:none;border:none;color:var(--accent-purple);cursor:pointer;font:inherit;font-weight:600}
+    .auth-panel .form-group{margin-bottom:0.85rem}
+
+    /* ===================== UPLOAD PROGRESS ===================== */
+    .upload-progress{margin-top:0.75rem;display:none}
+    .upload-bar-wrap{background:var(--bg-elevated);border-radius:50px;height:6px;overflow:hidden;margin-top:0.35rem}
+    .upload-bar{height:100%;background:var(--gradient-btn);border-radius:50px;width:0;transition:width 0.3s ease}
+    .upload-status{font-size:0.78rem;color:var(--text-muted)}
+
+    /* ===================== RESPONSIVE ===================== */
+    @media(max-width:900px){
+      .sidebar{position:fixed;left:-260px;top:0;bottom:0;z-index:200;transition:left var(--transition-med)}
+      .sidebar.open{left:0}
+      .admin-main{padding:1.25rem}
+      .form-grid{grid-template-columns:1fr}
+      .mobile-toggle{display:flex !important;position:fixed;top:0.75rem;left:0.75rem;z-index:100;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);color:var(--text-primary);font-size:1.25rem;padding:0.45rem 0.6rem;cursor:pointer}
+    }
+    .mobile-toggle{display:none}
+    .hidden{display:none !important}
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- AUTH SECTION                                                  -->
+  <!-- ============================================================ -->
+  <section class="auth-shell" id="admin-auth">
+    <div class="auth-panel">
+      <h1 id="admin-auth-title">Admin Sign In</h1>
+      <p id="admin-auth-copy">Use an admin account to manage your product catalogue.</p>
+
+      <div class="form-group hidden" id="admin-name-field">
+        <label for="admin-name">Full Name</label>
+        <input class="form-input" id="admin-name" placeholder="Store owner name" autocomplete="name" />
+      </div>
+      <div class="form-group">
+        <label for="admin-email">Email Address</label>
+        <input class="form-input" id="admin-email" type="email" placeholder="admin@example.com" autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label for="admin-password">Password</label>
+        <input class="form-input" id="admin-password" type="password" placeholder="Min. 8 characters" autocomplete="current-password" />
+      </div>
+      <div class="form-group hidden" id="admin-key-field">
+        <label for="admin-setup-key">Admin Setup Key</label>
+        <input class="form-input" id="admin-setup-key" type="password" placeholder="SECRET_KEY from backend/.env" />
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:0.25rem" onclick="submitAdminAuth()" id="admin-auth-submit">Sign In</button>
+      <div class="auth-switch">
+        <span id="admin-switch-text">Need to create the first admin?</span>
+        <button onclick="toggleAdminMode()" id="admin-mode-toggle">Set up admin</button>
+      </div>
+    </div>
+  </section>
+
+  <button class="mobile-toggle hidden" id="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+
+  <!-- ============================================================ -->
+  <!-- DASHBOARD                                                     -->
+  <!-- ============================================================ -->
+  <div class="admin-layout hidden" id="admin-dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <a href="/" class="sidebar-logo"><span>ASAA</span> Fashion</a>
+      <div class="sidebar-sub">Admin Panel</div>
+      <div class="sidebar-label">Manage</div>
+      <ul class="sidebar-nav">
+        <li><a href="#" class="active" id="nav-products">&#9632; Products</a></li>
+        <li><a href="/" id="nav-store">&#8594; View Store</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div id="admin-session-label" style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.5rem"></div>
+        <button class="btn btn-sm btn-danger" onclick="adminLogout()" style="width:100%;justify-content:center">Sign Out</button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="admin-main">
+      <div class="admin-header">
+        <h1>Product Catalogue</h1>
+        <p>Create, edit, and manage your products</p>
+      </div>
+
+      <!-- ======================================================= -->
+      <!-- PRODUCT FORM (tabbed)                                    -->
+      <!-- ======================================================= -->
+      <div class="form-card">
+        <h2>&#43; <span id="form-title">Add New Product</span></h2>
+        <input type="hidden" id="prod-id" />
+
+        <!-- Tabs -->
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab('core',this)" id="tab-core">Core Details</button>
+          <button class="tab-btn" onclick="switchTab('images',this)" id="tab-images">Images</button>
+          <button class="tab-btn" onclick="switchTab('variants',this)" id="tab-variants">Variants &amp; Details</button>
+          <button class="tab-btn" onclick="switchTab('inventory',this)" id="tab-inventory">Inventory</button>
+        </div>
+
+        <!-- TAB 1: Core Details -->
+        <div class="tab-panel active" id="panel-core">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="prod-name">Product Name *</label>
+              <input class="form-input" id="prod-name" placeholder="e.g. Wool Trench Coat" maxlength="200" />
+            </div>
+            <div class="form-group">
+              <label for="prod-sku">SKU / Code</label>
+              <input class="form-input" id="prod-sku" placeholder="e.g. COAT-WOO-001" />
+            </div>
+            <div class="form-group">
+              <label for="prod-price">Price (GBP) *</label>
+              <input class="form-input" id="prod-price" type="number" step="0.01" min="0" placeholder="149.99" />
+            </div>
+            <div class="form-group">
+              <label for="prod-original-price">Original Price (leave blank if not on sale)</label>
+              <input class="form-input" id="prod-original-price" type="number" step="0.01" min="0" placeholder="199.99" />
+            </div>
+            <div class="form-group">
+              <label for="prod-category">Category *</label>
+              <select class="form-input" id="prod-category">
+                <option value="">Select category</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Footwear">Footwear</option>
+                <option value="Accessories">Accessories</option>
+                <option value="Beauty">Beauty</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="prod-tags">Tags (comma-separated)</label>
+              <input class="form-input" id="prod-tags" placeholder="new-in, sale, bestseller" />
+            </div>
+            <div class="form-group full-width">
+              <label for="prod-short-desc">Short Description <small>(shown on product cards)</small></label>
+              <input class="form-input" id="prod-short-desc" placeholder="One sentence that sells this product..." maxlength="200" />
+              <div class="char-count"><span id="short-desc-count">0</span>/200</div>
+            </div>
+            <div class="form-group full-width">
+              <label for="prod-description">Full Description</label>
+              <textarea class="form-input" id="prod-description" rows="5" placeholder="Detailed product description — fabric, fit, key features..." maxlength="3000"></textarea>
+              <div class="char-count"><span id="desc-count">0</span>/3000</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: Images -->
+        <div class="tab-panel" id="panel-images">
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1.25rem">
+            Upload up to 5 images. The first image is the cover photo shown on product cards. Images are committed to GitHub and served as permanent static files.
+          </p>
+
+          <!-- Drag-and-drop upload -->
+          <div class="drop-zone" id="drop-zone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+            <input type="file" id="image-file-input" accept="image/jpeg,image/png,image/webp" multiple onchange="handleFileSelect(event)" />
+            <div class="drop-zone-icon">&#128247;</div>
+            <p><strong>Drag photos here</strong> or click to browse</p>
+            <p style="margin-top:0.35rem;font-size:0.78rem">JPEG, PNG, WebP &bull; max 10 MB each</p>
+          </div>
+
+          <div class="upload-progress" id="upload-progress">
+            <div class="upload-status" id="upload-status">Uploading...</div>
+            <div class="upload-bar-wrap"><div class="upload-bar" id="upload-bar"></div></div>
+          </div>
+
+          <div class="image-preview-strip" id="image-preview-strip"></div>
+
+          <div class="url-divider">or paste a URL</div>
+
+          <div class="form-group">
+            <label for="prod-image-url">Image URL <small>(works with Google Drive share links too)</small></label>
+            <div style="display:flex;gap:0.5rem">
+              <input class="form-input" id="prod-image-url" placeholder="https://... or Google Drive share link" />
+              <button class="btn btn-sm" onclick="addUrlImage()">Add</button>
+            </div>
+          </div>
+
+          <!-- Hidden field storing all gallery URLs -->
+          <input type="hidden" id="prod-image-urls" />
+        </div>
+
+        <!-- TAB 3: Variants & Details -->
+        <div class="tab-panel" id="panel-variants">
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label>Sizes</label>
+              <div class="chip-group" id="sizes-chips">
+                <span class="chip" onclick="toggleChip(this,'sizes')">XS</span>
+                <span class="chip" onclick="toggleChip(this,'sizes')">S</span>
+                <span class="chip" onclick="toggleChip(this,'sizes')">M</span>
+                <span class="chip" onclick="toggleChip(this,'sizes')">L</span>
+                <span class="chip" onclick="toggleChip(this,'sizes')">XL</span>
+                <span class="chip" onclick="toggleChip(this,'sizes')">XXL</span>
+                <span class="chip" onclick="toggleChip(this,'sizes')">One Size</span>
+                <span class="chip" onclick="toggleChip(this,'sizes')">36</span>
+                <span class="chip" onclick="toggleChip(this,'sizes')">37</span>
+                <span class="chip" onclick="toggleChip(this,'sizes')">38</span>
+                <span class="chip" onclick="toggleChip(this,'sizes')">39</span>
+                <span class="chip" onclick="toggleChip(this,'sizes')">40</span>
+                <span class="chip" onclick="toggleChip(this,'sizes')">41</span>
+                <span class="chip" onclick="toggleChip(this,'sizes')">42</span>
+                <span class="chip" onclick="toggleChip(this,'sizes')">30ml</span>
+                <span class="chip" onclick="toggleChip(this,'sizes')">50ml</span>
+                <span class="chip" onclick="toggleChip(this,'sizes')">100ml</span>
+              </div>
+              <div class="chip-input-row">
+                <input class="form-input" id="custom-size-input" placeholder="Custom size..." style="max-width:180px" />
+                <button class="btn btn-sm" onclick="addCustomChip('sizes','custom-size-input')">Add</button>
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <label>Colours</label>
+              <div class="chip-group" id="colours-chips">
+                <span class="chip" onclick="toggleChip(this,'colours')">Black</span>
+                <span class="chip" onclick="toggleChip(this,'colours')">White</span>
+                <span class="chip" onclick="toggleChip(this,'colours')">Grey</span>
+                <span class="chip" onclick="toggleChip(this,'colours')">Navy</span>
+                <span class="chip" onclick="toggleChip(this,'colours')">Camel</span>
+                <span class="chip" onclick="toggleChip(this,'colours')">Beige</span>
+                <span class="chip" onclick="toggleChip(this,'colours')">Brown</span>
+                <span class="chip" onclick="toggleChip(this,'colours')">Burgundy</span>
+                <span class="chip" onclick="toggleChip(this,'colours')">Red</span>
+                <span class="chip" onclick="toggleChip(this,'colours')">Pink</span>
+                <span class="chip" onclick="toggleChip(this,'colours')">Blush</span>
+                <span class="chip" onclick="toggleChip(this,'colours')">Green</span>
+                <span class="chip" onclick="toggleChip(this,'colours')">Gold</span>
+                <span class="chip" onclick="toggleChip(this,'colours')">Silver</span>
+              </div>
+              <div class="chip-input-row">
+                <input class="form-input" id="custom-colour-input" placeholder="Custom colour..." style="max-width:180px" />
+                <button class="btn btn-sm" onclick="addCustomChip('colours','custom-colour-input')">Add</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="prod-material">Material / Composition</label>
+              <input class="form-input" id="prod-material" placeholder="e.g. 70% Wool, 30% Polyamide" />
+            </div>
+            <div class="form-group">
+              <label for="prod-care">Care Instructions</label>
+              <input class="form-input" id="prod-care" placeholder="e.g. Machine wash 30°C, do not tumble dry" />
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4: Inventory & Visibility -->
+        <div class="tab-panel" id="panel-inventory">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="prod-stock">Stock Count</label>
+              <input class="form-input" id="prod-stock" type="number" min="0" step="1" placeholder="Leave blank if not tracked" />
+              <div class="char-count">Leave blank = not tracked. Set to 0 = Out of Stock.</div>
+            </div>
+          </div>
+          <div style="margin-top:1.25rem">
+            <div class="toggle-row">
+              <div>
+                <div class="toggle-label">Active / Visible</div>
+                <div class="toggle-desc">Inactive products are hidden from the storefront</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="prod-active" checked /><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div>
+                <div class="toggle-label">Featured Product</div>
+                <div class="toggle-desc">Pinned to the top of the storefront and shown in the featured banner</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="prod-featured" /><span class="toggle-slider"></span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn" onclick="clearForm()" id="clear-btn">Clear</button>
+          <button class="btn btn-primary" onclick="saveProduct()" id="save-btn">&#43; Add Product</button>
+        </div>
+      </div>
+
+      <!-- ======================================================= -->
+      <!-- PRODUCT TABLE                                            -->
+      <!-- ======================================================= -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <h2>All Products <span class="product-count" id="product-count">0</span></h2>
+          <div style="display:flex;gap:0.5rem">
+            <input class="form-input" id="table-search" placeholder="Search..." style="width:180px;padding:0.4rem 0.75rem;font-size:0.8rem" oninput="filterTable()" />
+            <button class="btn btn-sm" onclick="loadProducts()">Refresh</button>
+          </div>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name / SKU</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="product-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+<script>
+  const API = window.SHOPDEMO_API_URL || "";
+  let allProducts = [];
+  let currentImageUrls = []; // gallery images for current edit
+
+  // ================================================================
+  // FETCH HELPER
+  // ================================================================
+  async function api(path, method = 'GET', body = null) {
+    const opts = { method, headers: {}, credentials: 'include' };
+    if (body) { opts.headers['Content-Type'] = 'application/json'; opts.body = JSON.stringify(body); }
+    const res = await fetch(API + path, opts);
+    const text = await res.text();
+    let data = {};
+    try { data = text ? JSON.parse(text) : {}; } catch (_) {
+      if (!res.ok) throw new Error(text || `Server error (${res.status})`);
+    }
+    if (!res.ok) throw new Error(data.detail || data.message || 'Request failed');
+    return data;
+  }
+
+  function escapeHtml(v) {
+    return String(v ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  }
+
+  // ================================================================
+  // TOAST
+  // ================================================================
+  function showToast(msg, type = 'success') {
+    const t = document.createElement('div');
+    t.className = `toast toast-${type}`;
+    t.innerHTML = `<span>${type === 'success' ? '✓' : '!'}</span> ${escapeHtml(msg)}`;
+    document.getElementById('toast-container').appendChild(t);
+    setTimeout(() => { t.classList.add('leaving'); setTimeout(() => t.remove(), 300); }, 3500);
+  }
+
+  // ================================================================
+  // TABS
+  // ================================================================
+  function switchTab(name, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + name).classList.add('active');
+  }
+
+  // ================================================================
+  // CHAR COUNTERS
+  // ================================================================
+  document.getElementById('prod-short-desc').addEventListener('input', function() {
+    document.getElementById('short-desc-count').textContent = this.value.length;
+  });
+  document.getElementById('prod-description').addEventListener('input', function() {
+    document.getElementById('desc-count').textContent = this.value.length;
+  });
+
+  // ================================================================
+  // CHIPS
+  // ================================================================
+  function toggleChip(chip, group) {
+    chip.classList.toggle('selected');
+  }
+
+  function getSelectedChips(containerId) {
+    return [...document.querySelectorAll(`#${containerId} .chip.selected`)].map(c => c.textContent.trim());
+  }
+
+  function setSelectedChips(containerId, values) {
+    const chips = document.querySelectorAll(`#${containerId} .chip`);
+    chips.forEach(c => c.classList.toggle('selected', values.includes(c.textContent.trim())));
+    // add any custom chips not in the default set
+    values.forEach(v => {
+      const exists = [...chips].some(c => c.textContent.trim() === v);
+      if (!exists) appendCustomChip(containerId, v);
+    });
+  }
+
+  function addCustomChip(group, inputId) {
+    const input = document.getElementById(inputId);
+    const val = input.value.trim();
+    if (!val) return;
+    const container = group === 'sizes' ? 'sizes-chips' : 'colours-chips';
+    appendCustomChip(container, val);
+    input.value = '';
+  }
+
+  function appendCustomChip(containerId, val) {
+    const chip = document.createElement('span');
+    chip.className = 'chip selected';
+    chip.textContent = val;
+    chip.onclick = () => chip.classList.toggle('selected');
+    document.getElementById(containerId).appendChild(chip);
+  }
+
+  // ================================================================
+  // IMAGE HANDLING
+  // ================================================================
+  function handleDragOver(e) { e.preventDefault(); document.getElementById('drop-zone').classList.add('drag-over'); }
+  function handleDragLeave(e) { document.getElementById('drop-zone').classList.remove('drag-over'); }
+
+  function handleDrop(e) {
+    e.preventDefault();
+    document.getElementById('drop-zone').classList.remove('drag-over');
+    const files = [...e.dataTransfer.files].filter(f => f.type.startsWith('image/'));
+    uploadFiles(files);
+  }
+
+  function handleFileSelect(e) {
+    const files = [...e.target.files];
+    uploadFiles(files);
+    e.target.value = '';
+  }
+
+  async function uploadFiles(files) {
+    const productId = document.getElementById('prod-id').value.trim();
+    if (!productId) {
+      showToast('Save the product first, then add images.', 'error');
+      return;
+    }
+    if (currentImageUrls.length + files.length > 5) {
+      showToast('Maximum 5 images per product.', 'error');
+      return;
+    }
+
+    showUploadProgress(true);
+    let done = 0;
+
+    for (const file of files) {
+      if (file.size > 10 * 1024 * 1024) { showToast(`${file.name} is over 10MB — skipped`, 'error'); continue; }
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+        const res = await fetch(`${API}/api/products/${encodeURIComponent(productId)}/images`, {
+          method: 'POST',
+          credentials: 'include',
+          body: formData,
+        });
+        if (!res.ok) { const d = await res.json(); throw new Error(d.detail || 'Upload failed'); }
+        const data = await res.json();
+        addImageToGallery(data.image_url);
+        done++;
+        setUploadBar(Math.round((done / files.length) * 100));
+      } catch (err) {
+        showToast(`Upload failed: ${err.message}`, 'error');
+      }
+    }
+    showUploadProgress(false);
+    if (done > 0) showToast(`${done} image${done > 1 ? 's' : ''} uploaded`);
+  }
+
+  function addUrlImage() {
+    const input = document.getElementById('prod-image-url');
+    const url = input.value.trim();
+    if (!url) return;
+    addImageToGallery(url);
+    input.value = '';
+  }
+
+  function addImageToGallery(url) {
+    if (currentImageUrls.length >= 5) { showToast('Maximum 5 images', 'error'); return; }
+    if (currentImageUrls.includes(url)) return;
+    currentImageUrls.push(url);
+    renderImageStrip();
+    // Set primary image_url to first image
+    document.getElementById('prod-image-urls').value = JSON.stringify(currentImageUrls);
+  }
+
+  function removeImageFromGallery(url) {
+    currentImageUrls = currentImageUrls.filter(u => u !== url);
+    renderImageStrip();
+    document.getElementById('prod-image-urls').value = JSON.stringify(currentImageUrls);
+  }
+
+  function renderImageStrip() {
+    const strip = document.getElementById('image-preview-strip');
+    strip.innerHTML = currentImageUrls.map((url, i) => `
+      <div class="image-thumb-wrap">
+        <img class="image-thumb" src="${escapeHtml(url)}" alt="Product image ${i+1}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%231a1a26%22/%3E%3Ctext x=%2240%22 y=%2245%22 text-anchor=%22middle%22 fill=%22%236b6680%22 font-size=%2218%22%3E?%3C/text%3E%3C/svg%3E'" />
+        ${i === 0 ? '<span style="position:absolute;bottom:-2px;left:0;right:0;text-align:center;font-size:0.6rem;color:var(--accent-gold);font-weight:700">COVER</span>' : ''}
+        <button class="image-thumb-remove" onclick="removeImageFromGallery('${escapeHtml(url)}')" title="Remove">&#10005;</button>
+      </div>
+    `).join('');
+  }
+
+  function showUploadProgress(show) {
+    const el = document.getElementById('upload-progress');
+    el.style.display = show ? 'block' : 'none';
+    if (!show) setUploadBar(0);
+  }
+
+  function setUploadBar(pct) {
+    document.getElementById('upload-bar').style.width = pct + '%';
+    document.getElementById('upload-status').textContent = pct < 100 ? `Uploading... ${pct}%` : 'Done!';
+  }
+
+  // ================================================================
+  // AUTH
+  // ================================================================
+  let isSetupMode = false;
+
+  function toggleAdminMode() {
+    isSetupMode = !isSetupMode;
+    document.getElementById('admin-auth-title').textContent = isSetupMode ? 'Set Up Admin' : 'Admin Sign In';
+    document.getElementById('admin-auth-copy').textContent = isSetupMode
+      ? 'Create or promote an admin account using the setup key from backend/.env.'
+      : 'Use an admin account to manage your product catalogue.';
+    document.getElementById('admin-name-field').classList.toggle('hidden', !isSetupMode);
+    document.getElementById('admin-key-field').classList.toggle('hidden', !isSetupMode);
+    document.getElementById('admin-auth-submit').textContent = isSetupMode ? 'Create Admin' : 'Sign In';
+    document.getElementById('admin-switch-text').textContent = isSetupMode ? 'Already have an admin account?' : 'Need to create the first admin?';
+    document.getElementById('admin-mode-toggle').textContent = isSetupMode ? 'Sign in' : 'Set up admin';
+  }
+
+  async function submitAdminAuth() {
+    const email = document.getElementById('admin-email').value.trim();
+    const password = document.getElementById('admin-password').value;
+    if (!email || !password) { showToast('Email and password are required', 'error'); return; }
+    try {
+      let admin;
+      if (isSetupMode) {
+        const name = document.getElementById('admin-name').value.trim();
+        const adminKey = document.getElementById('admin-setup-key').value.trim();
+        if (!name || !adminKey) { showToast('Name and setup key are required', 'error'); return; }
+        admin = await api('/api/admin/setup', 'POST', { name, email, password, admin_key: adminKey });
+      } else {
+        await api('/api/login', 'POST', { email, password });
+        admin = await api('/api/admin/me');
+      }
+      showDashboard(admin);
+      showToast(`Welcome back, ${admin.name}`);
+    } catch (err) {
+      showToast(err.message, 'error');
+    }
+  }
+
+  async function checkAdminSession() {
+    try {
+      const admin = await api('/api/admin/me');
+      showDashboard(admin);
+    } catch {
+      document.getElementById('admin-auth').classList.remove('hidden');
+    }
+  }
+
+  function showDashboard(admin) {
+    document.getElementById('admin-session-label').textContent = `${admin.name} · ${admin.email}`;
+    document.getElementById('admin-auth').classList.add('hidden');
+    document.getElementById('admin-dashboard').classList.remove('hidden');
+    document.getElementById('mobile-toggle').classList.remove('hidden');
+    loadProducts();
+  }
+
+  async function adminLogout() {
+    try { await api('/api/logout', 'POST'); } finally {
+      document.getElementById('admin-auth').classList.remove('hidden');
+      document.getElementById('admin-dashboard').classList.add('hidden');
+      document.getElementById('mobile-toggle').classList.add('hidden');
+      showToast('Signed out');
+    }
+  }
+
+  // ================================================================
+  // LOAD & RENDER PRODUCTS
+  // ================================================================
+  async function loadProducts() {
+    try {
+      allProducts = await api('/api/products?active_only=false');
+      renderProductTable(allProducts);
+    } catch (err) {
+      showToast('Could not load products: ' + err.message, 'error');
+    }
+  }
+
+  function filterTable() {
+    const q = document.getElementById('table-search').value.toLowerCase();
+    const filtered = q
+      ? allProducts.filter(p => (p.name||'').toLowerCase().includes(q) || (p.sku||'').toLowerCase().includes(q) || (p.category||'').toLowerCase().includes(q))
+      : allProducts;
+    renderProductTable(filtered);
+  }
+
+  function renderProductTable(products) {
+    document.getElementById('product-count').textContent = products.length;
+    const body = document.getElementById('product-body');
+
+    if (!products.length) {
+      body.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:3rem;color:var(--text-muted)">No products found. Add your first product above!</td></tr>`;
+      return;
+    }
+
+    body.innerHTML = products.map(p => {
+      const thumb = p.image_url
+        ? `<img class="cell-thumb" src="${escapeHtml(p.image_url)}" alt="${escapeHtml(p.name)}" onerror="this.style.display='none';this.nextSibling.style.display='flex'" /><div class="cell-thumb-placeholder" style="display:none">📦</div>`
+        : `<div class="cell-thumb-placeholder">📦</div>`;
+
+      const priceHtml = p.original_price
+        ? `<span class="cell-sale">£${Number(p.price).toFixed(2)}</span><span class="cell-price-orig">£${Number(p.original_price).toFixed(2)}</span>`
+        : `<span class="cell-price">£${Number(p.price).toFixed(2)}</span>`;
+
+      const stock = p.stock_count == null
+        ? '<span class="cell-stock" style="color:var(--text-muted)">—</span>'
+        : p.stock_count === 0
+          ? '<span class="cell-stock stock-out">Out of Stock</span>'
+          : p.stock_count <= 5
+            ? `<span class="cell-stock stock-low">Low (${p.stock_count})</span>`
+            : `<span class="cell-stock stock-ok">${p.stock_count} in stock</span>`;
+
+      const status = [
+        !p.is_active ? '<span class="badge badge-inactive">Inactive</span>' : '',
+        p.is_featured ? '<span class="badge badge-featured">⭐ Featured</span>' : '',
+      ].filter(Boolean).join('') || '<span style="color:var(--text-muted);font-size:0.8rem">Active</span>';
+
+      return `
+        <tr>
+          <td>${thumb}</td>
+          <td>
+            <div class="cell-name" title="${escapeHtml(p.name)}">${escapeHtml(p.name)}</div>
+            ${p.sku ? `<div class="cell-sku">${escapeHtml(p.sku)}</div>` : ''}
+          </td>
+          <td class="cell-category">${p.category ? `<span>${escapeHtml(p.category)}</span>` : '—'}</td>
+          <td>${priceHtml}</td>
+          <td>${stock}</td>
+          <td>${status}</td>
+          <td class="cell-actions">
+            <button class="btn btn-sm" onclick="editProduct('${escapeHtml(p.id)}')">Edit</button>
+            <button class="btn btn-sm btn-danger" onclick="deleteProduct('${escapeHtml(p.id)}')">Delete</button>
+          </td>
+        </tr>`;
+    }).join('');
+  }
+
+  // ================================================================
+  // EDIT PRODUCT
+  // ================================================================
+  async function editProduct(id) {
+    const p = allProducts.find(x => x.id === id);
+    if (!p) { showToast('Product not found', 'error'); return; }
+
+    document.getElementById('prod-id').value = p.id;
+    document.getElementById('prod-name').value = p.name || '';
+    document.getElementById('prod-sku').value = p.sku || '';
+    document.getElementById('prod-price').value = p.price || '';
+    document.getElementById('prod-original-price').value = p.original_price || '';
+    document.getElementById('prod-category').value = p.category || '';
+    document.getElementById('prod-tags').value = (p.tags || []).join(', ');
+    document.getElementById('prod-short-desc').value = p.short_description || '';
+    document.getElementById('short-desc-count').textContent = (p.short_description || '').length;
+    document.getElementById('prod-description').value = p.description || '';
+    document.getElementById('desc-count').textContent = (p.description || '').length;
+
+    // Images
+    currentImageUrls = [...(p.image_urls || [])];
+    if (p.image_url && !currentImageUrls.includes(p.image_url)) currentImageUrls.unshift(p.image_url);
+    renderImageStrip();
+    document.getElementById('prod-image-urls').value = JSON.stringify(currentImageUrls);
+
+    // Variants
+    setSelectedChips('sizes-chips', p.sizes || []);
+    setSelectedChips('colours-chips', p.colours || []);
+    document.getElementById('prod-material').value = p.material || '';
+    document.getElementById('prod-care').value = p.care_instructions || '';
+
+    // Inventory
+    document.getElementById('prod-stock').value = p.stock_count != null ? p.stock_count : '';
+    document.getElementById('prod-active').checked = p.is_active !== false;
+    document.getElementById('prod-featured').checked = p.is_featured === true;
+
+    document.getElementById('form-title').textContent = `Editing: ${p.name}`;
+    document.getElementById('save-btn').textContent = 'Update Product';
+    document.getElementById('clear-btn').textContent = 'Cancel Edit';
+
+    // Switch to core tab and scroll
+    switchTab('core', document.getElementById('tab-core'));
+    document.querySelector('.form-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ================================================================
+  // CLEAR FORM
+  // ================================================================
+  function clearForm() {
+    ['prod-id','prod-name','prod-sku','prod-price','prod-original-price','prod-short-desc',
+     'prod-description','prod-image-url','prod-image-urls','prod-material','prod-care','prod-stock'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+    document.getElementById('prod-category').value = '';
+    document.getElementById('prod-tags').value = '';
+    document.getElementById('prod-active').checked = true;
+    document.getElementById('prod-featured').checked = false;
+    document.getElementById('short-desc-count').textContent = '0';
+    document.getElementById('desc-count').textContent = '0';
+
+    // Clear chips
+    document.querySelectorAll('#sizes-chips .chip, #colours-chips .chip').forEach(c => c.classList.remove('selected'));
+
+    // Clear images
+    currentImageUrls = [];
+    renderImageStrip();
+
+    document.getElementById('form-title').textContent = 'Add New Product';
+    document.getElementById('save-btn').innerHTML = '&#43; Add Product';
+    document.getElementById('clear-btn').textContent = 'Clear';
+    switchTab('core', document.getElementById('tab-core'));
+  }
+
+  // ================================================================
+  // SAVE PRODUCT
+  // ================================================================
+  async function saveProduct() {
+    const id = document.getElementById('prod-id').value.trim();
+    const name = document.getElementById('prod-name').value.trim();
+    const priceRaw = document.getElementById('prod-price').value;
+    const origPriceRaw = document.getElementById('prod-original-price').value;
+    const price = parseFloat(priceRaw);
+
+    if (!name) { showToast('Product name is required', 'error'); switchTab('core', document.getElementById('tab-core')); return; }
+    if (!priceRaw || isNaN(price) || price <= 0) { showToast('A valid price is required', 'error'); switchTab('core', document.getElementById('tab-core')); return; }
+
+    const imageUrlsRaw = document.getElementById('prod-image-urls').value;
+    let imageUrls = [];
+    try { imageUrls = imageUrlsRaw ? JSON.parse(imageUrlsRaw) : currentImageUrls; } catch { imageUrls = currentImageUrls; }
+
+    const tagsRaw = document.getElementById('prod-tags').value;
+    const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim().toLowerCase()).filter(Boolean) : [];
+
+    const stockRaw = document.getElementById('prod-stock').value;
+
+    const payload = {
+      name,
+      sku: document.getElementById('prod-sku').value.trim() || null,
+      price,
+      original_price: origPriceRaw ? parseFloat(origPriceRaw) : null,
+      category: document.getElementById('prod-category').value || null,
+      tags,
+      short_description: document.getElementById('prod-short-desc').value.trim() || null,
+      description: document.getElementById('prod-description').value.trim() || null,
+      image_url: imageUrls[0] || null,
+      image_urls: imageUrls,
+      sizes: getSelectedChips('sizes-chips'),
+      colours: getSelectedChips('colours-chips'),
+      material: document.getElementById('prod-material').value.trim() || null,
+      care_instructions: document.getElementById('prod-care').value.trim() || null,
+      stock_count: stockRaw !== '' ? parseInt(stockRaw, 10) : null,
+      is_active: document.getElementById('prod-active').checked,
+      is_featured: document.getElementById('prod-featured').checked,
+    };
+
+    const saveBtn = document.getElementById('save-btn');
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Saving...';
+
+    try {
+      if (!id) {
+        await api('/api/products', 'POST', payload);
+        showToast(`"${name}" added to catalogue`);
+      } else {
+        await api('/api/products/' + encodeURIComponent(id), 'PUT', payload);
+        showToast(`"${name}" updated`);
+      }
+      clearForm();
+      await loadProducts();
+    } catch (err) {
+      showToast(err.message, 'error');
+    } finally {
+      saveBtn.disabled = false;
+    }
+  }
+
+  // ================================================================
+  // DELETE PRODUCT
+  // ================================================================
+  async function deleteProduct(id) {
+    const p = allProducts.find(x => x.id === id);
+    if (!confirm(`Delete "${p?.name || id}"? This cannot be undone.`)) return;
+    try {
+      await api('/api/products/' + encodeURIComponent(id), 'DELETE');
+      showToast('Product deleted');
+      await loadProducts();
+    } catch (err) {
+      showToast(err.message, 'error');
+    }
+  }
+
+  // ================================================================
+  // INIT
+  // ================================================================
+  checkAdminSession();
+</script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+ShopDemo — Deployment & local run guide
+
+*Note: The ShopDemo application is currently published and live in production. This document serves as a reference for its deployment architecture and local development.*
+
+This document explains how to run and deploy the ShopDemo application (FastAPI backend + simple static frontend). It assumes the repository layout:
+
+- backend/    — FastAPI app, requirements.txt, seed script
+- frontend/   — static HTML frontend (index.html, admin.html)
+- DEPLOY.txt  — this file
+
+Contents
+1) Overview
+2) Local development (quick start)
+3) MongoDB Atlas (production DB)
+4) Seeding initial products
+5) Deploying the backend (Render.com)
+6) Deploying the frontend (Netlify)
+7) GitHub Actions (CI / Deploy)
+8) Security notes
+
+=================================================================
+1) Overview
+=================================================================
+
+Architecture:
+
+Browser (frontend/index.html & admin.html)
+	↕ (fetch, credentials: include)
+FastAPI backend (backend/main.py)
+	↕
+MongoDB Atlas (motor async driver)
+
+Auth: JWT stored in an httpOnly cookie named `access_token`. Admin actions require `x-admin-key` header equal to `SECRET_KEY`.
+
+=================================================================
+2) Local development (quick start)
+=================================================================
+
+Prerequisites:
+- Python 3.10+ (3.11 recommended)
+- Git
+- Optional: VS Code Live Server to serve `frontend/` pages easily
+
+Steps:
+
+1. Create a virtualenv and install dependencies
+
+Windows PowerShell:
+
+```powershell
+cd backend
+python -m venv .venv
+. .venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+2. Create `.env` (copy the example) and set values
+
+```powershell
+copy .env.example .env
+# Edit backend\.env and set MONGO_URL, DATABASE_NAME, SECRET_KEY, FRONTEND_URL (if needed)
+```
+
+3. Seed products (optional if DB empty)
+
+```powershell
+python seed_products.py
+```
+
+4. Start the backend (uvicorn)
+
+```powershell
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
+5. Open the frontend
+
+- Option A: Use backend static mount — open http://127.0.0.1:8000 to serve frontend from the backend's StaticFiles mount.
+- Option B: Serve frontend directly (use Live Server or python http.server):
+
+```powershell
+cd ../frontend
+python -m http.server 5500
+# open http://localhost:5500
+```
+
+Admin UI:
+- Visit `/admin.html` on whichever host is serving the frontend (e.g. http://127.0.0.1:8000/admin.html or http://localhost:5500/admin.html).
+- Provide the `SECRET_KEY` value from `backend/.env` in the Admin Key field to perform create/update/delete operations.
+
+=================================================================
+3) MongoDB Atlas (production)
+=================================================================
+
+Recommended: use MongoDB Atlas free tier (M0) for testing and small deployments.
+
+Steps summary:
+1. Go to https://cloud.mongodb.com and create an account (or log in).
+2. Create a Project → Build a Cluster → Select M0 FREE tier.
+3. Create a database user (username + password) and copy credentials.
+4. Under Network Access, add your server's IP or allow 0.0.0.0/0 for quick testing.
+5. Connect → Drivers → Python and copy the connection string.
+
+Set the connection string in `backend/.env` as `MONGO_URL`. Example format:
+
+```
+MONGO_URL=mongodb+srv://<username>:<password>@cluster0.xxxxxx.mongodb.net/?retryWrites=true&w=majority
+DATABASE_NAME=shopdemo
+SECRET_KEY=<long-random-secret>
+FRONTEND_URL=http://localhost:5500
+```
+
+Note: Never commit `.env` to Git — `.gitignore` already excludes it.
+
+=================================================================
+4) Seeding initial products
+=================================================================
+
+The repository includes `backend/seed_products.py` which will insert a small set of sample products only if the `products` collection is empty.
+
+Run it after you set `MONGO_URL`:
+
+```powershell
+cd backend
+python seed_products.py
+```
+
+This prints whether it inserted items or skipped because the collection already contains documents.
+
+=================================================================
+5) Deploying backend on Render.com
+=================================================================
+
+Render is a simple option for deploying the Python FastAPI backend.
+
+Steps (Render web service):
+1. Create an account at https://render.com and connect your GitHub repository.
+2. Create a new Web Service, select the `main` branch.
+3. Settings:
+	 - Runtime: Python 3
+	 - Build Command: `pip install -r requirements.txt`
+	 - Start Command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+4. Environment variables (Render → Environment):
+	 - `MONGO_URL` — your Atlas string
+	 - `DATABASE_NAME` — e.g. `shopdemo`
+	 - `SECRET_KEY` — long random secret used for admin actions and JWT signing
+	 - `FRONTEND_URL` — your Netlify (or other) frontend URL (HTTPS)
+
+5. Deploy and note the Render URL (e.g. `https://everything-asaa.onrender.com`).
+
+Important: For cross-site cookie auth in production, ensure `FRONTEND_URL` is HTTPS and set `COOKIE_SECURE=true` and `COOKIE_SAMESITE=none` in your Render environment variables if needed.
+
+=================================================================
+6) Deploying frontend on Netlify
+=================================================================
+
+Steps:
+1. Create a Netlify account and site.
+2. You can deploy the static `frontend/` folder directly (drag-and-drop) or connect the GitHub repo and configure a build (not needed for pure static HTML).
+3. After you have a Netlify URL (e.g. `https://shopdemo-abc123.netlify.app`), set `FRONTEND_URL` in Render to this value and redeploy the backend so CORS and cookie settings match.
+
+If the backend URL is `https://shopdemo-api.onrender.com`, update the `API` variable in `frontend/index.html` (or set `window.SHOPDEMO_API_URL` on Netlify) to point to the backend.
+
+=================================================================
+7) GitHub Actions (CI / Deploy)
+=================================================================
+
+Workflows in `.github/workflows/` already include:
+- `ci.yml` — installs Python deps and runs a basic import check
+- `deploy.yml` — example deploy steps (Netlify + Render triggers) which expect repository secrets
+
+Set these Secrets in GitHub (Repository → Settings → Secrets → Actions):
+- `NETLIFY_AUTH_TOKEN` (if using Netlify CLI deployment)
+- `NETLIFY_SITE_ID`
+- `RENDER_API_KEY`
+- `RENDER_SERVICE_ID`
+
+When these are present, pushing to `main` will trigger the deploy workflow.
+
+=================================================================
+8) Security notes and best practices
+=================================================================
+
+- `SECRET_KEY` is critical: keep it secret, rotate if exposed.
+- Do not commit `.env` or any credentials to Git.
+- Use HTTPS frontend in production so cookies can be `Secure` and `SameSite=None`.
+- Limit `Network Access` in MongoDB Atlas to only the IPs you need (avoid 0.0.0.0/0 in production).
+
+=================================================================
+Troubleshooting quick tips
+=================================================================
+
+- If `admin.html` shows empty list: ensure backend is running and `MONGO_URL` is correct, or run `python seed_products.py`.
+- If cookies are not sent/received cross-site: check `COOKIE_SECURE` and `COOKIE_SAMESITE` settings and ensure frontend uses HTTPS.
+- Check backend logs on Render for stack traces, and review GitHub Actions console for CI failures.
+
+If you want, I can:
+- Run the seed script for you (if you provide a MongoDB connection string or set it in `backend/.env`).
+- Rotate `SECRET_KEY` and update Render environment variables (you must paste new secret into Render manually or provide API credentials).
+- Create a small helper script to set GitHub repo secrets via the GitHub CLI.
+
+--- End of guide
+
+
+=================================================================
+9) GitHub Repository Setup
+=================================================================
+
+The project is ready for your GitHub repository: https://github.com/scod-code/textile_retail.git
+
+To push this project to your repository:
+
+1. Initialize Git (if not already done):
+```bash
+git init
+git add .
+git commit -m "Initial commit: ASAA Fashion Beauty House complete shop demo"
+```
+
+2. Add your GitHub repository as remote:
+```bash
+git remote add origin https://github.com/scod-code/textile_retail.git
+```
+
+3. Push to main branch:
+```bash
+git branch -M main
+git push -u origin main
+```
+
+4. Set up GitHub Secrets (Repository → Settings → Secrets → Actions):
+   - `NETLIFY_AUTH_TOKEN` (if using Netlify)
+   - `NETLIFY_SITE_ID`
+   - `RENDER_API_KEY` (if using Render)
+   - `RENDER_SERVICE_ID`
+
+5. The existing `.github/workflows/` will automatically:
+   - Run CI tests on push/pull requests
+   - Deploy to Netlify and Render when secrets are configured
+
+=================================================================
+10) Customization Notes for Textile Retail
+=================================================================
+
+This shop demo is specifically tailored for fashion and beauty, but can be easily adapted:
+
+- **Product Categories**: Already set for fashion (Clothing, Footwear, Accessories, Beauty)
+- **Branding**: Update "ASAA Fashion & Beauty House" in frontend files
+- **Color Scheme**: Purple gradient theme can be changed in CSS
+- **Product Data**: Modify `seed_products.py` for your specific textile products
+- **Images**: Placeholder emojis ready to be replaced with actual product images
+
+To add more textile-specific features:
+1. Extend the existing material/care instruction fields
+2. Create textile-specific categories (Cotton, Silk, Wool, etc.)
+3. Implement dynamic size charts and specific body measurements
+
+=================================================================
+11) Development Roadmap
+=================================================================
+
+Phase 1 (Current - Complete):
+✓ Modern responsive M&S-style frontend
+✓ Complete authentication with separated roles
+✓ Robust product management (images, sizes, colours, stock, SEO)
+✓ Tabbed admin dashboard
+✓ Order processing
+✓ Health monitoring
+✓ CI/CD pipeline
+
+Phase 2 (Ready for Implementation):
+ - Shopping cart with multiple items
+ - User reviews and ratings
+ - Wishlist functionality
+
+Phase 3 (Advanced Features):
+ - Payment gateway integration (Stripe/PayPal)
+ - Advanced inventory reporting
+ - Discount codes and promotions
+ - Email notifications
+ - Analytics dashboard
+
+=================================================================
+Troubleshooting GitHub Setup
+=================================================================
+
+If you encounter issues pushing to GitHub:
+
+1. Check repository permissions
+2. Verify Git is configured:
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+
+3. If repository already has content, you may need to pull first:
+```bash
+git pull origin main --allow-unrelated-histories
+```
+
+4. For large files, consider adding `.gitignore` exclusions
+
+=================================================================
+Support & Maintenance
+=================================================================
+
+The application includes built-in monitoring:
+- Health endpoint: `/api/health`
+- Automatic fallback products when DB is unavailable
+- Comprehensive error handling
+- Logging for debugging
+
+For ongoing maintenance:
+1. Regularly update dependencies: `pip install -r requirements.txt --upgrade`
+2. Rotate `SECRET_KEY` periodically
+3. Monitor MongoDB Atlas usage and scale as needed
+4. Review GitHub Actions logs for CI/CD issues
+
+--- End of deployment guide ---

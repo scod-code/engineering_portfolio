@@ -17,7 +17,20 @@ the project evidence described across my role-specific CVs.
 | [`nlp-text-classification/`](./nlp-text-classification/) | Text classification, speech recognition, and audio classification labs |
 | [`data-engineering/`](./data-engineering/) | Data engineering and scalable analytics notes |
 | [`programming-foundations/`](./programming-foundations/) | Additional programming foundation summaries |
-| [`agentic-workflow/`](./agentic-workflow/) | **NEW**: Academic writing automation and workflow orchestration tools |
+| [`agentic-workflow/`](./agentic-workflow/) | Academic writing automation and workflow orchestration tools |
+| [`textile-retail-webapp/`](./textile-retail-webapp/) | **NEW**: Complete, deployed FastAPI and Vanilla JS e-commerce storefront with admin panel |
+
+## 🚀 New: Textile Retail Web App
+
+A luxury fashion and beauty e-commerce platform demonstrating full-stack engineering, robust backend architecture, and modern UI design.
+
+### **What's Included:**
+- **FastAPI Backend**: RESTful APIs, JWT authentication, and MongoDB integration.
+- **Modern Vanilla Frontend**: M&S-style layout, dynamic product modals, category filtering.
+- **Admin Dashboard**: Secure product CRUD operations, image uploads (GitHub/Drive/URL).
+- **Deployment Strategy**: Live on Render with CI/CD GitHub Actions.
+
+**Live Site:** [https://asaa-fashion.onrender.com/](https://asaa-fashion.onrender.com/)
 
 ## 🚀 New: Agentic Workflow Project
 
@@ -104,8 +117,9 @@ make start  # or .\start.ps1 on Windows
 - **Machine Learning**: CNN, RNN, transfer learning, multimodal AI
 - **Computer Vision**: OpenCV, classical algorithms, deep learning
 - **Data Science**: Pandas, NumPy, Scikit-learn, visualization
-- **Software Engineering**: C/C++, Python, Docker, MLOps
+- **Software Engineering**: C/C++, Python, FastAPI, Docker, JavaScript, CSS
 - **AI Safety**: Explainable AI, code evaluation, security
+- **Web Development**: Full-stack e-commerce architecture, JWT auth, MongoDB
 
 ## 📚 Professional Standards Used
 

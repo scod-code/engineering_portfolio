@@ -1,0 +1,22 @@
+.env
+*.pyc
+__pycache__/
+.venv/
+venv/
+.env.local
+.DS_Store
+node_modules/
+/.vscode/
+*.log
+*.sqlite3
+backend/.local_data.json
+
+# Editor directories
+.idea/
+.vscode/
+
+# System files
+Thumbs.db
+
+# OS generated files
+Desktop.ini
