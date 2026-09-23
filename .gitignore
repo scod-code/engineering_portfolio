@@ -168,3 +168,15 @@ _trash/
 sample_text.txt
 text.txt
 .env.local
+# ============================================================================
+# Split into separate repositories. Kept on disk for local editing.
+# ============================================================================
+02-advanced/
+03-data-science/
+04-projects/
+agentic-workflow/
+ai-safety-system/
+computer-vision/
+multimodal-emotion-ai/
+nlp-text-classification/
+textile-retail-webapp/
